@@ -42,6 +42,27 @@ const Contact = () => {
             {/* LEFT, Copy */}
             <div className="w-full lg:w-5/12 flex-shrink-0">
 
+              {/* Who you'll meet */}
+              <div className="flex items-center gap-4 mb-8">
+                <img
+                  src="/images/steven-bowman.jpg"
+                  alt="Steven Bowman, founder of Ella Tech Solutions"
+                  width="400"
+                  height="400"
+                  loading="lazy"
+                  className="h-20 w-20 flex-shrink-0 rounded-full object-cover border-2 border-p1/40"
+                />
+                <div>
+                  <p className="text-p4 font-bold text-lg leading-tight">Steven Bowman</p>
+                  <p className="text-p1 text-sm font-semibold uppercase tracking-wider">
+                    Founder &amp; CTO
+                  </p>
+                  <p className="text-p5/70 text-sm mt-1">
+                    You'll talk with me directly. 15 years of IT leadership in Michigan.
+                  </p>
+                </div>
+              </div>
+
               {/* Who this is for */}
               <div className="mb-8">
                 <p className="text-p5 leading-relaxed text-[17px]">
