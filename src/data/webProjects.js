@@ -31,7 +31,7 @@ export const webProjectsSchema = {
 export const webProjects = [
   {
     title: "Ella Tech Solutions Website",
-    img: "/images/projects/ellatech.png",
+    img: "/images/projects/ellatech.webp",
     desc:
       "A modern SaaS-style website built for a technology consulting firm. Showcases services, pricing, and client intake - optimized for nonprofit and small business audiences.",
     tags: ["React", "Node.js", "PostgreSQL"],
@@ -72,7 +72,7 @@ export const webProjects = [
   },
   {
     title: "Build by Steven",
-    img: "/images/projects/build-by-steven.png",
+    img: "/images/projects/build-by-steven.webp",
     desc:
       "A personal brand and portfolio website focused on clear project presentation, responsive performance, and a polished client-facing experience.",
     tags: ["React", "Tailwind CSS", "Vite"],
