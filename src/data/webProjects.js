@@ -105,6 +105,42 @@ export const webProjects = [
     },
   },
   {
+    title: "Tone Finder",
+    img: "/images/projects/tone-finder.png",
+    desc:
+      "A mobile app for live sound that gives musicians exact amp, drum, vocal, and room settings from a short questionnaire, then listens through the mic and suggests what to change. Currently in TestFlight beta.",
+    tags: ["React Native", "Expo", "TypeScript"],
+    link: "/#contact",
+    internal: true,
+    cta: "Ask About It",
+    skills: {
+      Languages: [
+        "TypeScript: app screens, the tone-matching engine, and the audio analysis code",
+      ],
+      "Mobile Frontend": [
+        "React Native 0.81 + Expo SDK 54: cross-platform app with an iOS TestFlight beta",
+        "Expo Router: file-based navigation across tabs, questionnaire, and results screens",
+        "NativeWind (Tailwind CSS): shared styling tokens and a dark theme",
+        "Reanimated and React Native SVG: animated knob and gauge visuals",
+      ],
+      "Audio & Engine": [
+        "expo-audio: records mic clips for Sound Check and Tone Snapshots",
+        "Pure-TypeScript FFT: octave-band balance and resonant peak detection with no native audio dependency",
+        "Rule-based settings engine: amp knobs, drum tuning, and PA channel strips from 8 questions",
+      ],
+      "Data & Services": [
+        "Zustand: questionnaire, profile, and settings state",
+        "expo-sqlite and AsyncStorage: offline tone profiles saved on device",
+        "RevenueCat (react-native-purchases): in-app purchase for the Pro tier",
+        "Claude API via a small proxy server: optional AI sound engineer that never ships an API key in the app",
+      ],
+      "Release & Tooling": [
+        "EAS Build and EAS Update: TestFlight builds and over-the-air JavaScript updates",
+        "Node test runner with tsx: unit tests for the engine",
+      ],
+    },
+  },
+  {
     title: "Team Cabin",
     img: "/images/projects/teamcabin.png",
     desc:

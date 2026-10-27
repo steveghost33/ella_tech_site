@@ -88,7 +88,7 @@ function ProjectCard({ proj }) {
             containerClassName="mt-auto self-start"
             markerFill="#FFF"
           >
-            View Project
+            {proj.cta ?? "View Project"}
           </Button>
         ) : (
           <Button
