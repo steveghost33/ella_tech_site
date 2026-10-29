@@ -81,7 +81,7 @@ function DigitalStrategy() {
         schema={[schema, faqSchema, breadcrumbSchema]}
       />
 
-      <PageShell mainClassName="overflow-hidden pt-[160px] md:pt-[180px] min-h-screen bg-s1">
+      <PageShell mainClassName="overflow-hidden pt-[140px] sm:pt-[200px] min-h-screen bg-s1">
         <section className="relative pt-16 pb-24 max-lg:pt-12 max-lg:pb-20 max-md:pt-10 max-md:pb-16 bg-s1 font-poppins text-p5">
 
           {/* Page Header */}

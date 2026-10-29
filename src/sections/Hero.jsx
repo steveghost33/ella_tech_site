@@ -3,7 +3,7 @@ import { CONTACT_PHONE, CONTACT_PHONE_TEL } from "../data/site.js";
 
 const Hero = () => {
   return (
-    <section className="relative pt-20 pb-40 max-lg:pt-14 max-lg:pb-36 max-md:pt-12 max-md:pb-32 overflow-hidden">
+    <section className="relative pt-20 pb-40 max-lg:pt-14 max-lg:pb-28 max-md:pt-8 max-md:pb-16 overflow-hidden">
       {/* Background photo */}
       <div className="absolute inset-0 z-0">
         <picture>
@@ -30,9 +30,9 @@ const Hero = () => {
           <img
             src="/images/ellalogo.svg"
             alt="Ella Tech Solutions"
-            className="theme-logo h-7 max-md:h-6 w-auto mb-5 max-lg:mb-6"
+            className="theme-logo h-7 w-auto mb-5 max-lg:mb-6 max-md:hidden"
           />
-          <div className="mb-3 text-[13px] font-semibold tracking-[0.15em] uppercase text-p3/70">
+          <div className="mb-3 text-[13px] max-md:text-[11px] font-semibold tracking-[0.15em] max-md:tracking-[0.12em] uppercase text-p3/70">
             Detroit-Based. Serving Local Businesses Nationwide.
           </div>
           <h1 className="mb-6 h1 text-p4 max-lg:mb-7 max-lg:text-5xl max-lg:leading-tight max-md:mb-4 max-md:text-4xl max-md:leading-tight max-sm:text-3xl">

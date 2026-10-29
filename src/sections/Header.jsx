@@ -142,12 +142,12 @@ const Header = () => {
       <header
         ref={headerRef}
         className={clsx(
-          "w-full transition-all duration-500",
+          "w-full transition-all duration-500 max-lg:bg-s1",
           hasScrolled && "bg-black-100/90 backdrop-blur-[8px]"
         )}
       >
         <div className="container relative z-[110]">
-          <div className="flex items-center justify-between py-4 sm:py-5">
+          <div className="flex items-center justify-between py-2 sm:py-5">
 
             {/* Logo */}
             <Link
@@ -160,7 +160,7 @@ const Header = () => {
                 src="/images/ellalogo.png"
                 alt=""
                 aria-hidden="true"
-                className="h-20 w-20 sm:h-24 sm:w-24 rounded-full object-cover ring-2 ring-p1/30 group-hover:ring-p1/70 group-hover:shadow-[0_0_20px_rgba(46,242,255,0.25)] transition-all duration-300 flex-shrink-0"
+                className="h-14 w-14 sm:h-24 sm:w-24 rounded-full object-cover ring-2 ring-p1/30 group-hover:ring-p1/70 group-hover:shadow-[0_0_20px_rgba(46,242,255,0.25)] transition-all duration-300 flex-shrink-0"
               />
             </Link>
 
@@ -215,11 +215,11 @@ const Header = () => {
         </div>
       </header>
 
-      {/* Mobile menu panel, positioned below header (112px mobile, 136px sm+) + ContactBanner (88px mobile, 52px sm+) */}
+      {/* Mobile menu panel, positioned below header (72px mobile, 136px sm+) + ContactBanner (48px mobile, 52px sm+) */}
       {isOpen && (
         <div
           ref={mobilePanelRef}
-          className="fixed left-0 right-0 top-[200px] sm:top-[188px] z-[99] bg-s2/98 backdrop-blur-xl border-b border-white/10 shadow-2xl xl:hidden"
+          className="fixed left-0 right-0 top-[120px] sm:top-[188px] max-h-[calc(100dvh-120px)] sm:max-h-[calc(100dvh-188px)] overflow-y-auto overscroll-contain z-[99] bg-s2/98 backdrop-blur-xl border-b border-white/10 shadow-2xl xl:hidden"
         >
           <div className="container py-4">
             <nav id="site-nav-mobile" aria-label="Mobile menu">
