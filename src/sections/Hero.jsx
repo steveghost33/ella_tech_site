@@ -19,9 +19,9 @@ const Hero = () => {
           />
         </picture>
         {/* Fade the photo into the background color under the text, left-to-right and top-to-bottom */}
-        <div className="absolute inset-0 bg-gradient-to-r from-s1 via-s1/70 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-s1 via-s1/10 to-transparent" />
-        <div className="absolute inset-0 lg:hidden bg-s1/55" />
+        <div className="hero-fade-x absolute inset-0 bg-gradient-to-r from-s1 via-s1/70 to-transparent" />
+        <div className="hero-fade-y absolute inset-0 bg-gradient-to-t from-s1 via-s1/10 to-transparent" />
+        <div className="hero-fade-mobile absolute inset-0 lg:hidden bg-s1/55" />
       </div>
 
       <div className="container relative z-10 flex flex-col lg:flex-row items-start lg:items-center">
@@ -30,7 +30,7 @@ const Hero = () => {
           <img
             src="/images/ellalogo.svg"
             alt="Ella Tech Solutions"
-            className="h-7 max-md:h-6 w-auto mb-5 max-lg:mb-6"
+            className="theme-logo h-7 max-md:h-6 w-auto mb-5 max-lg:mb-6"
           />
           <div className="mb-3 text-[13px] font-semibold tracking-[0.15em] uppercase text-p3/70">
             Detroit-Based. Serving Local Businesses Nationwide.

@@ -88,6 +88,35 @@ html.light .text-p5\/80 {
   color: rgb(71 85 105);
 }
 
+/* Light mode: the hero photo sits under s1 (white) fade overlays, which bleach
+   the image. Thin them out so the photo keeps its color; the text column keeps
+   enough white on the left to stay readable. */
+html.light .hero-fade-x {
+  background-image: linear-gradient(to right, rgb(255 255 255 / 0.92), rgb(255 255 255 / 0.4) 45%, transparent);
+}
+html.light .hero-fade-y {
+  background-image: linear-gradient(to top, rgb(255 255 255), rgb(255 255 255 / 0) 22%);
+}
+html.light .hero-fade-mobile {
+  background-color: rgb(255 255 255 / 0.72);
+}
+
+/* Light mode: the green eyebrow caption at /70 opacity on white is faint.
+   Use a darker green at full strength (~5:1 on white). */
+html.light .text-p3\/70 {
+  color: rgb(21 128 61);
+}
+
+/* Light mode: footer links/legal text dimmed with opacity-* on slate wash out
+   to near-invisible. Keep a slight dim, but readable. Separators (opacity-20/30)
+   are left alone. */
+html.light footer .opacity-40,
+html.light footer .opacity-50,
+html.light footer .opacity-60,
+html.light footer .opacity-70 {
+  opacity: 0.9;
+}
+
 /* Light mode: white logo → dark (all fills are #fff so invert makes them #000) */
 html.light .theme-logo {
   filter: invert(1);
