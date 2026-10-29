@@ -113,3 +113,20 @@ export const markContacted = async (req, res) => {
     return res.status(500).json({ error: "Failed to update subscriber." });
   }
 };
+
+export const deleteSubscriber = async (req, res) => {
+  if (!requireAdminToken(req, res)) return;
+
+  const id = Number.parseInt(req.params.id, 10);
+  if (!Number.isInteger(id)) return res.status(400).json({ error: "Invalid subscriber id." });
+
+  try {
+    const result = await pool.query("DELETE FROM subscribers WHERE id = $1 RETURNING id, email", [id]);
+    if (result.rowCount === 0) return res.status(404).json({ error: "Subscriber not found." });
+    console.log(`Deleted subscriber ${result.rows[0].id}.`);
+    return res.json({ success: true, deleted: result.rows[0] });
+  } catch (err) {
+    console.error("deleteSubscriber error:", err.message);
+    return res.status(500).json({ error: "Failed to delete subscriber." });
+  }
+};
