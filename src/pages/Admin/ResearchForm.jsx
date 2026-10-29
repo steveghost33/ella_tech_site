@@ -13,10 +13,15 @@ const parseCompetitors = (value) =>
     })
     .filter((entry) => entry.name);
 
+// Read once on first render so the auth effect never runs before the URL has
+// been parsed (which sent a stray pending-leads request with a stale token).
+const getUrlParam = (key) =>
+  typeof window === "undefined" ? null : new URLSearchParams(window.location.search).get(key);
+
 const ResearchForm = () => {
-  const [leadId, setLeadId] = useState(null);
+  const [leadId] = useState(() => getUrlParam("lead_id"));
   // Signed one-click link from the new-lead email; replaces the admin token.
-  const [sig, setSig] = useState("");
+  const [sig] = useState(() => getUrlParam("sig") || "");
   const [lead, setLead] = useState(null);
   const [pendingLeads, setPendingLeads] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -32,14 +37,6 @@ const ResearchForm = () => {
   const [competitors, setCompetitors] = useState("");
   const [quickWins, setQuickWins] = useState("");
   const [summary, setSummary] = useState("");
-
-  // Load lead data on mount
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get("lead_id");
-    setLeadId(id);
-    setSig(params.get("sig") || "");
-  }, []);
 
   const hasAccess = Boolean(token || sig);
 
