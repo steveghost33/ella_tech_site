@@ -48,7 +48,7 @@ function Blog() {
         schema={schema}
       />
 
-      <PageShell mainClassName="overflow-hidden pt-[160px] md:pt-[180px] min-h-screen bg-s1">
+      <PageShell mainClassName="overflow-hidden pt-[148px] sm:pt-[200px] min-h-screen bg-s1">
         <section className="relative pt-16 pb-32 bg-s1 font-poppins text-p5">
           <div className="container max-w-4xl mx-auto px-6">
 

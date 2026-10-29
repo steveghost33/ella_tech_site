@@ -30,6 +30,8 @@ export default [
       ...reactHooks.configs.recommended.rules,
       "react/prop-types": "off",
       "react/jsx-no-target-blank": "off",
+      // Apostrophes in JSX copy render fine; still flag the characters that can break markup.
+      "react/no-unescaped-entities": ["error", { forbid: [">", "}", '"'] }],
       "react-refresh/only-export-components": [
         "warn",
         { allowConstantExport: true },

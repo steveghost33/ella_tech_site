@@ -35,6 +35,12 @@ const MenuIcon = () => (
   </svg>
 );
 
+const CloseIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M6 18 18 6M6 6l12 12" />
+  </svg>
+);
+
 const Header = () => {
   const [hasScrolled, setHasScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -125,7 +131,7 @@ const Header = () => {
       aria-controls="site-nav-desktop site-nav-mobile"
     >
       {isOpen ? (
-        <img src="/images/close.svg" alt="" aria-hidden="true" className="w-4 h-4 object-contain" />
+        <CloseIcon />
       ) : (
         <>
           <span>Menu</span>
@@ -142,12 +148,12 @@ const Header = () => {
       <header
         ref={headerRef}
         className={clsx(
-          "w-full transition-all duration-500",
+          "w-full transition-all duration-500 max-lg:bg-s1",
           hasScrolled && "bg-black-100/90 backdrop-blur-[8px]"
         )}
       >
         <div className="container relative z-[110]">
-          <div className="flex items-center justify-between py-4 sm:py-5">
+          <div className="flex items-center justify-between py-2 sm:py-5">
 
             {/* Logo */}
             <Link
@@ -160,7 +166,7 @@ const Header = () => {
                 src="/images/ellalogo.png"
                 alt=""
                 aria-hidden="true"
-                className="h-20 w-20 sm:h-24 sm:w-24 rounded-full object-cover ring-2 ring-p1/30 group-hover:ring-p1/70 group-hover:shadow-[0_0_20px_rgba(46,242,255,0.25)] transition-all duration-300 flex-shrink-0"
+                className="h-16 w-16 sm:h-24 sm:w-24 rounded-full object-cover ring-2 ring-p1/30 group-hover:ring-p1/70 group-hover:shadow-[0_0_20px_rgba(46,242,255,0.25)] transition-all duration-300 flex-shrink-0"
               />
             </Link>
 
@@ -215,11 +221,11 @@ const Header = () => {
         </div>
       </header>
 
-      {/* Mobile menu panel, positioned below header (112px mobile, 136px sm+) + ContactBanner (88px mobile, 52px sm+) */}
+      {/* Mobile menu panel, positioned below header (80px mobile, 136px sm+) + ContactBanner (48px mobile, 52px sm+) */}
       {isOpen && (
         <div
           ref={mobilePanelRef}
-          className="fixed left-0 right-0 top-[200px] sm:top-[188px] z-[99] bg-s2/98 backdrop-blur-xl border-b border-white/10 shadow-2xl xl:hidden"
+          className="fixed left-0 right-0 top-[128px] sm:top-[188px] max-h-[calc(100dvh-128px)] sm:max-h-[calc(100dvh-188px)] overflow-y-auto overscroll-contain z-[99] bg-s2/98 backdrop-blur-xl border-b border-white/10 shadow-2xl xl:hidden"
         >
           <div className="container py-4">
             <nav id="site-nav-mobile" aria-label="Mobile menu">
