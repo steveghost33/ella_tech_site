@@ -2,6 +2,7 @@ import { Resend } from "resend";
 import { email1, email2, email3, email4 } from "../emails/templates.js";
 import { generateAuditPdf } from "./auditPdfService.js";
 import { escapeHtml } from "../lib/htmlEscape.js";
+import { signLeadLink } from "../lib/adminAuth.js";
 
 const FROM = `Steven at Ella Tech <info@ellatechsolutions.com>`;
 let resendClient = null;
@@ -76,7 +77,7 @@ export const sendAdminNotification = async ({ id, name, email, businessName, bus
   const adminEmail = process.env.ADMIN_EMAIL || "steven@ellatechsolutions.com";
   const siteUrl = process.env.SITE_URL || "https://www.ellatechsolutions.com";
   const researchUrl = id
-    ? `${siteUrl}/admin/research-form?lead_id=${id}`
+    ? `${siteUrl}/admin/research-form?lead_id=${id}&sig=${signLeadLink(id)}`
     : `${siteUrl}/admin/research-form`;
 
   const html = `

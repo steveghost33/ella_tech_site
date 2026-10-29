@@ -15,6 +15,8 @@ const parseCompetitors = (value) =>
 
 const ResearchForm = () => {
   const [leadId, setLeadId] = useState(null);
+  // Signed one-click link from the new-lead email; replaces the admin token.
+  const [sig, setSig] = useState("");
   const [lead, setLead] = useState(null);
   const [pendingLeads, setPendingLeads] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -36,11 +38,15 @@ const ResearchForm = () => {
     const params = new URLSearchParams(window.location.search);
     const id = params.get("lead_id");
     setLeadId(id);
+    setSig(params.get("sig") || "");
   }, []);
+
+  const hasAccess = Boolean(token || sig);
 
   const getAuthHeaders = () => ({
     "Content-Type": "application/json",
     "x-admin-token": token,
+    "x-lead-sig": sig,
   });
 
   const fetchLeadData = useCallback(async (id) => {
@@ -48,7 +54,7 @@ const ResearchForm = () => {
       setLoading(true);
       setError("");
       const res = await fetch(`${API_BASE}/api/admin/research-form?lead_id=${id}`, {
-        headers: { "x-admin-token": token },
+        headers: { "x-admin-token": token, "x-lead-sig": sig },
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Failed to load lead");
@@ -60,7 +66,7 @@ const ResearchForm = () => {
     } finally {
       setLoading(false);
     }
-  }, [token]);
+  }, [token, sig]);
 
   const fetchPendingLeads = useCallback(async () => {
     try {
@@ -80,19 +86,19 @@ const ResearchForm = () => {
   }, [token]);
 
   useEffect(() => {
-    if (!token) return;
+    if (!hasAccess) return;
 
     if (leadId) {
       fetchLeadData(leadId);
       return;
     }
 
-    fetchPendingLeads();
-  }, [fetchLeadData, fetchPendingLeads, leadId, token]);
+    if (token) fetchPendingLeads();
+  }, [fetchLeadData, fetchPendingLeads, leadId, token, hasAccess]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!token) {
+    if (!hasAccess) {
       setError("Admin token required");
       return;
     }
@@ -162,7 +168,7 @@ const ResearchForm = () => {
     </Helmet>
   );
 
-  if (!token) {
+  if (!hasAccess || (!token && !leadId)) {
     return (
       <>
         {noindexTag}
@@ -311,7 +317,8 @@ const ResearchForm = () => {
               </div>
             )}
 
-            {/* Admin Token */}
+            {/* Admin Token (not needed when opened from the emailed link) */}
+            {!sig && (
             <div>
               <label htmlFor="admin-token" className="block text-sm font-semibold text-slate-700 mb-2">
                 Admin Token *
@@ -325,6 +332,7 @@ const ResearchForm = () => {
                 className="w-full rounded-lg border border-slate-300 px-4 py-2 text-slate-800 focus:ring-2 focus:ring-blue-500 outline-none"
               />
             </div>
+            )}
 
             {/* GBP Metrics */}
             <div className="border-t pt-6">

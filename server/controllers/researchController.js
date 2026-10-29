@@ -1,11 +1,15 @@
 import pool from "../db/pool.js";
-import { requireAdminToken } from "../lib/adminAuth.js";
+import { requireAdminToken, requireAdminOrLeadLink } from "../lib/adminAuth.js";
 
 export const getResearchForm = async (req, res) => {
-  if (!requireAdminToken(req, res)) return;
+  const { lead_id } = req.query;
+  if (lead_id) {
+    if (!requireAdminOrLeadLink(req, res, lead_id)) return;
+  } else if (!requireAdminToken(req, res)) {
+    return;
+  }
 
   try {
-    const { lead_id } = req.query;
 
     if (lead_id) {
       // Fetch specific lead for pre-filled form
@@ -34,13 +38,22 @@ export const getResearchForm = async (req, res) => {
 };
 
 export const submitResearch = async (req, res) => {
-  if (!requireAdminToken(req, res)) return;
-
   const { lead_id, gbp_completeness_score, gbp_rating, gbp_review_count, website_issues, competitors, quick_wins, summary } = req.body;
 
   if (!lead_id) return res.status(400).json({ error: "Lead ID is required." });
+  const access = requireAdminOrLeadLink(req, res, lead_id);
+  if (!access) return;
 
   try {
+    // A signed link can only submit once, so a forwarded or reused link can't
+    // re-send the audit email to the lead.
+    if (access === "lead") {
+      const current = await pool.query("SELECT research_status FROM subscribers WHERE id = $1", [lead_id]);
+      if (current.rows[0]?.research_status === "completed") {
+        return res.status(409).json({ error: "Research was already submitted for this lead." });
+      }
+    }
+
     const research_data = {
       gbp_completeness_score: parseInt(gbp_completeness_score) || 0,
       gbp_rating: parseFloat(gbp_rating) || 0,
@@ -89,11 +102,10 @@ export const submitResearch = async (req, res) => {
 };
 
 export const skipResearch = async (req, res) => {
-  if (!requireAdminToken(req, res)) return;
-
   const { lead_id } = req.body;
 
   if (!lead_id) return res.status(400).json({ error: "Lead ID is required." });
+  if (!requireAdminOrLeadLink(req, res, lead_id)) return;
 
   try {
     await pool.query(
