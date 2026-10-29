@@ -19,7 +19,6 @@ function Services() {
               <p className="body-1 text-p5 mb-8">{text}</p>
 
               <Button
-                icon={button.icon}
                 to={button.path}
                 containerClassName="self-start"
               >

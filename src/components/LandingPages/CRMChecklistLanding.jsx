@@ -139,7 +139,7 @@ const CRMChecklistLanding = () => {
                   )}
                   <button
                     type="submit" disabled={loading}
-                    className="w-full rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 text-[15px] transition disabled:opacity-60 flex items-center justify-center gap-2"
+                    className="w-full notch [--notch:10px] bg-blue-600 hover:bg-blue-700 text-white font-bold uppercase tracking-wide py-3.5 text-[15px] transition disabled:opacity-60 flex items-center justify-center gap-2"
                   >
                     {loading ? (
                       <>

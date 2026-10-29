@@ -13,7 +13,7 @@ function ContactBanner() {
       <span className="text-[#0A2540]/50 hidden sm:inline">—</span>
       <a
         href={BOOKING_PATH}
-        className="inline-flex items-center gap-2 bg-[#0A2540] text-[#00C8E8] px-5 py-2 rounded-full text-xs sm:text-sm font-black uppercase tracking-widest hover:opacity-90 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#0A2540] whitespace-nowrap"
+        className="notch [--notch:9px] inline-flex items-center gap-2 bg-[#0A2540] text-[#00C8E8] px-6 py-2.5 text-xs sm:text-sm font-black uppercase tracking-widest hover:bg-black transition-colors focus-visible:shadow-[inset_0_0_0_2px_#00C8E8] focus-visible:outline-none whitespace-nowrap"
       >
         Schedule Now
         <svg width="12" height="12" viewBox="0 0 10 10" fill="none" aria-hidden="true">

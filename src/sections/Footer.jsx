@@ -1,6 +1,9 @@
 import { socials } from "../constants/index.jsx";
 import { CONTACT_EMAIL, CONTACT_PHONE, CONTACT_PHONE_TEL } from "../data/site.js";
 
+// Never earlier than the launch year, then follows the calendar on its own.
+const currentYear = Math.max(2026, new Date().getFullYear());
+
 const Footer = () => {
   return (
     <footer>
@@ -13,9 +16,12 @@ const Footer = () => {
           </div>
           <a
             href="https://cal.com/ella-tech-7ze7wk"
-            className="inline-flex items-center gap-2 bg-p1 text-s1 px-6 py-3 rounded-2xl font-bold text-sm uppercase tracking-wide hover:opacity-90 transition-opacity whitespace-nowrap"
+            className="btn-ella group whitespace-nowrap"
           >
             Get Found Locally
+            <svg className="btn-ella-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="square" aria-hidden="true">
+              <path d="M2 8h11M9 3.5 13.5 8 9 12.5" />
+            </svg>
           </a>
         </div>
       </div>
@@ -64,8 +70,7 @@ const Footer = () => {
           <div className="flex w-full flex-col items-center gap-6 lg:flex-row lg:gap-4">
             {/* Copyright */}
             <div className="small-compact flex flex-col items-center justify-center lg:flex-1 lg:items-start gap-1">
-              <p className="opacity-70">Copyright, ELLA TECH SOLUTIONS LLC</p>
-              <p className="opacity-40 text-p5 text-xs">Last updated: May 20, 2026</p>
+              <p className="opacity-70">&copy; {currentYear} ELLA TECH SOLUTIONS LLC</p>
             </div>
 
             {/* Legal Links */}
@@ -87,8 +92,8 @@ const Footer = () => {
 
             {/* Location and Socials */}
             <div className="flex items-center justify-center gap-4 lg:flex-1 lg:justify-end">
-              <p className="opacity-70 text-p5 text-sm flex items-center gap-1 whitespace-nowrap">
-                📍 Detroit, MI
+              <p className="opacity-70 text-p5 text-sm whitespace-nowrap">
+                Detroit, MI
               </p>
               <span className="opacity-30 text-p5">|</span>
               <ul className="flex gap-3">

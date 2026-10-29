@@ -42,7 +42,7 @@ const Hero = () => {
             We build websites and run the SEO that gets your business showing up, and getting calls, when people nearby search for what you do. Built for local service businesses, live in as little as two weeks.
           </p>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-            <Button href="https://cal.com/ella-tech-7ze7wk" icon="/images/zap.svg">Get Found Locally</Button>
+            <Button href="https://cal.com/ella-tech-7ze7wk">Get Found Locally</Button>
             <a
               href={`tel:${CONTACT_PHONE_TEL}`}
               className="text-p4 font-semibold text-base hover:underline"

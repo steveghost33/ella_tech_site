@@ -19,15 +19,14 @@ const MobileBookingBar = () => {
       <div className="bg-black-100/95 backdrop-blur-sm border-t border-s2 px-4 py-3 flex gap-3">
         <a
           href={`tel:${CONTACT_PHONE_TEL}`}
-          className="flex items-center justify-center px-5 py-3.5 rounded-xl border-2 border-p1 text-p1 font-poppins font-bold text-sm uppercase tracking-wide"
+          className="flex items-center justify-center px-5 py-3.5 notch [--notch:10px] bg-p1/15 text-p1 font-poppins font-bold text-sm uppercase tracking-wide"
         >
           Call
         </a>
         <a
           href="https://cal.com/ella-tech-7ze7wk"
-          className="flex flex-1 items-center justify-center gap-3 py-3.5 rounded-xl bg-p1 hover:bg-p1/90 transition-colors duration-200"
+          className="flex flex-1 items-center justify-center gap-3 py-3.5 notch [--notch:10px] bg-p1 hover:bg-p4 transition-colors duration-200"
         >
-          <img src="/images/zap.svg" alt="" className="w-5 h-5" />
           <span className="font-poppins font-bold text-sm uppercase text-s1 tracking-wide">
             Book a Free Consultation
           </span>

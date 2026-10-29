@@ -1,9 +1,21 @@
 import clsx from "clsx";
 import { Link } from "react-router-dom";
-import { Marker } from "./Marker.jsx";
+
+const Arrow = () => (
+  <svg
+    className="btn-ella-arrow"
+    viewBox="0 0 16 16"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2.25"
+    strokeLinecap="square"
+    aria-hidden="true"
+  >
+    <path d="M2 8h11M9 3.5 13.5 8 9 12.5" />
+  </svg>
+);
 
 const Button = ({
-  icon,
   children,
   href,
   to,
@@ -11,43 +23,15 @@ const Button = ({
   rel,
   containerClassName,
   onClick,
-  markerFill,
   ariaLabel,
 }) => {
-  const Inner = () => (
-    <>
-      <span className="relative flex items-center min-h-[60px] px-4 g4 rounded-2xl inner-before group-hover:before:opacity-100 overflow-hidden">
-        <span className="absolute -left-[1px]">
-          <Marker fill={markerFill} />
-        </span>
-
-        {icon ? (
-          <img
-            src={icon}
-            alt=""
-            aria-hidden="true"
-            className="size-10 mr-5 object-contain z-10"
-          />
-        ) : null}
-
-        <span className="relative z-2 font-poppins base-bold text-p1 uppercase">
-          {children}
-        </span>
-      </span>
-
-      <span className="glow-before glow-after" />
-    </>
-  );
-
-  const className = clsx(
-    "relative inline-flex w-fit p-0.5 g5 rounded-2xl shadow-500 group",
-    containerClassName
-  );
+  const className = clsx("btn-ella group", containerClassName);
 
   if (to) {
     return (
       <Link className={className} to={to} aria-label={ariaLabel}>
-        <Inner />
+        <span>{children}</span>
+        <Arrow />
       </Link>
     );
   }
@@ -57,14 +41,16 @@ const Button = ({
 
     return (
       <a className={className} href={href} target={target} rel={safeRel} aria-label={ariaLabel}>
-        <Inner />
+        <span>{children}</span>
+        <Arrow />
       </a>
     );
   }
 
   return (
     <button className={className} onClick={onClick} type="button" aria-label={ariaLabel}>
-      <Inner />
+      <span>{children}</span>
+      <Arrow />
     </button>
   );
 };

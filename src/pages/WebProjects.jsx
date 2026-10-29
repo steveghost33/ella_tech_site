@@ -86,7 +86,6 @@ function ProjectCard({ proj }) {
           <Button
             to={proj.link}
             containerClassName="mt-auto self-start"
-            markerFill="#FFF"
           >
             {proj.cta ?? "View Project"}
           </Button>
@@ -94,7 +93,6 @@ function ProjectCard({ proj }) {
           <Button
             href={proj.link}
             containerClassName="mt-auto self-start"
-            markerFill="#FFF"
           >
             View Project
           </Button>

@@ -29,9 +29,9 @@ const MoonIcon = () => (
 
 const MenuIcon = () => (
   <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <rect width="16" height="2" rx="1" fill="#2EF2FF" />
-    <rect y="5" width="16" height="2" rx="1" fill="#2EF2FF" />
-    <rect y="10" width="16" height="2" rx="1" fill="#2EF2FF" />
+    <rect width="16" height="2" rx="1" fill="currentColor" />
+    <rect y="5" width="16" height="2" rx="1" fill="currentColor" />
+    <rect y="10" width="16" height="2" rx="1" fill="currentColor" />
   </svg>
 );
 
@@ -105,7 +105,7 @@ const Header = () => {
       onClick={toggle}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       className={clsx(
-        "flex items-center justify-center w-10 h-10 rounded-full border border-p1/50 bg-s2 text-p1 hover:bg-s3 transition-colors duration-200",
+        "notch [--notch:9px] flex items-center justify-center w-11 h-11 bg-p1/15 text-p1 hover:bg-p1 hover:text-s1 transition-colors duration-200",
         className
       )}
     >
@@ -116,7 +116,7 @@ const Header = () => {
   const MenuToggle = ({ className = "" }) => (
     <button
       className={clsx(
-        "flex h-10 flex-shrink-0 items-center justify-center gap-2 rounded-full border border-p1/50 bg-s2 px-4 text-sm font-semibold uppercase tracking-[0.08em] text-p1 hover:bg-s3 transition-colors duration-200",
+        "notch [--notch:9px] flex h-11 flex-shrink-0 items-center justify-center gap-2 bg-p1/15 px-5 text-sm font-bold uppercase tracking-[0.08em] text-p1 hover:bg-p1 hover:text-s1 transition-colors duration-200",
         className
       )}
       onClick={() => setIsOpen((prev) => !prev)}
@@ -160,7 +160,7 @@ const Header = () => {
                 src="/images/ellalogo.png"
                 alt=""
                 aria-hidden="true"
-                className="h-16 w-16 sm:h-20 sm:w-20 rounded-full object-cover ring-2 ring-p1/30 group-hover:ring-p1/70 group-hover:shadow-[0_0_20px_rgba(46,242,255,0.25)] transition-all duration-300 flex-shrink-0"
+                className="h-20 w-20 sm:h-24 sm:w-24 rounded-full object-cover ring-2 ring-p1/30 group-hover:ring-p1/70 group-hover:shadow-[0_0_20px_rgba(46,242,255,0.25)] transition-all duration-300 flex-shrink-0"
               />
             </Link>
 
@@ -215,11 +215,11 @@ const Header = () => {
         </div>
       </header>
 
-      {/* Mobile menu panel, positioned below header (80px) + ContactBanner (36px) */}
+      {/* Mobile menu panel, positioned below header (112px mobile, 136px sm+) + ContactBanner (88px mobile, 52px sm+) */}
       {isOpen && (
         <div
           ref={mobilePanelRef}
-          className="fixed left-0 right-0 top-[148px] sm:top-[172px] z-[99] bg-s2/98 backdrop-blur-xl border-b border-white/10 shadow-2xl xl:hidden"
+          className="fixed left-0 right-0 top-[200px] sm:top-[188px] z-[99] bg-s2/98 backdrop-blur-xl border-b border-white/10 shadow-2xl xl:hidden"
         >
           <div className="container py-4">
             <nav id="site-nav-mobile" aria-label="Mobile menu">

@@ -72,7 +72,7 @@ const CalInlineEmbed = ({ className = "" }) => {
             href={`${CAL_ORIGIN}/${CAL_LINK}`}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center justify-center gap-2 rounded-xl bg-p1 px-7 py-3.5 font-poppins font-bold uppercase tracking-wide text-s1 text-sm transition-opacity duration-200 hover:opacity-90"
+            className="btn-ella !min-h-0 !px-7 !py-3.5 !text-sm"
           >
             Open Booking Page
             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
