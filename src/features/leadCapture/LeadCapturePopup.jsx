@@ -24,7 +24,9 @@ const hasDismissed = () => {
 const markDismissed = (reason = "dismissed") => {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify({ reason, at: Date.now() }));
-  } catch {}
+  } catch {
+    // Storage unavailable; the popup may show again next visit, which is fine.
+  }
 };
 
 const LeadCapturePopup = () => {

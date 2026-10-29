@@ -35,6 +35,12 @@ const MenuIcon = () => (
   </svg>
 );
 
+const CloseIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M6 18 18 6M6 6l12 12" />
+  </svg>
+);
+
 const Header = () => {
   const [hasScrolled, setHasScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -125,7 +131,7 @@ const Header = () => {
       aria-controls="site-nav-desktop site-nav-mobile"
     >
       {isOpen ? (
-        <img src="/images/close.svg" alt="" aria-hidden="true" className="w-4 h-4 object-contain" />
+        <CloseIcon />
       ) : (
         <>
           <span>Menu</span>

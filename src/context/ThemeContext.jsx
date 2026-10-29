@@ -20,7 +20,9 @@ export function ThemeProvider({ children }) {
     }
     try {
       localStorage.setItem("theme", isDark ? "dark" : "light");
-    } catch {}
+    } catch {
+      // Storage unavailable (private mode, blocked cookies); theme still applies for this visit.
+    }
   }, [isDark]);
 
   const toggle = () => setIsDark((d) => !d);
@@ -32,4 +34,5 @@ export function ThemeProvider({ children }) {
   );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useTheme = () => useContext(ThemeContext);
