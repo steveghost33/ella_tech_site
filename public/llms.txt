@@ -1,10 +1,26 @@
 # Ella Tech Solutions
 
-> Ella Tech Solutions is a Detroit-based technology consulting firm that helps nonprofits and small businesses with website creation, CRM setup and strategy, AI workflow integration, AI literacy training, staff technology training, LMS and microlearning development, Microsoft 365 implementation, and paid digital strategy sessions. Founded by Steven Bowman, the firm serves organizations nationwide.
+> Ella Tech Solutions is a Detroit-based web design and local SEO firm. It builds mobile-friendly websites and runs the local SEO and AEO (AI answer engine optimization) work that helps local service businesses such as plumbers, HVAC, auto repair, towing, and salons get found on Google and recommended by AI tools like ChatGPT. Founded by Steven Bowman. Serves clients nationwide. Also provides CRM setup, Microsoft 365 implementation, AI workflow integration, staff training, and LMS development.
 
-Ella Tech Solutions is a strategic technology partner for organizations that need senior-level technology leadership. The firm primarily serves nonprofits with annual budgets between $500,000 and $5 million, and service-based small businesses with 5 to 20 employees, nationwide.
+## Plans and Pricing
 
-## Services
+- **Get Found**: $1,200 to $1,800 up front plus $150 a month. Mobile-friendly website, optimized Google Business Profile, local SEO foundation (location pages, listings, structured data).
+- **Get Called**: $2,200 to $3,500 up front plus $275 a month. Everything in Get Found plus expanded local SEO, AEO so AI tools surface the business, and review generation strategy.
+- **Own the Area**: $3,500 to $5,500 up front plus $450 to $500 a month. Everything in Get Called plus ongoing content, competitor monitoring and rank tracking, and monthly reporting.
+
+Guarantee: if the site and Google Business Profile are not live within 2 weeks of the client providing content, the client gets a free month of monitoring.
+
+Book a free 30-minute consultation: https://cal.com/ella-tech-7ze7wk or call (313) 474-1772.
+
+## Who We Serve
+
+**Primary:** Local, service-based businesses that depend on nearby customers finding them and calling.
+
+**Also:** Nonprofits with annual budgets between $500,000 and $5 million (mission-driven pricing available for verified 501(c)(3) organizations) and small businesses needing CRM, Microsoft 365, AI workflow, or training help.
+
+**Not served:** Schools, K-12 programs, and school districts.
+
+## Additional Services
 
 - [Website Creation and Redesign](https://www.ellatechsolutions.com/services/website-design): Custom websites for nonprofits and small businesses, 4 to 8 weeks, responsive design, donation and lead-capture integration, post-launch training included.
 - [CRM Strategy and Setup](https://www.ellatechsolutions.com/services/crm-setup): Platform selection, configuration, data migration, and staff training for Salesforce NPSP, HubSpot, Bloomerang, and similar tools.
@@ -13,14 +29,6 @@ Ella Tech Solutions is a strategic technology partner for organizations that nee
 - [LMS and Microlearning Development](https://www.ellatechsolutions.com/services/lms-development): LMS platform selection and implementation, SCORM-compliant course development in Articulate 360, administrator training.
 - [Microsoft 365 Implementation](https://www.ellatechsolutions.com/services/microsoft-365): Business email, Teams, SharePoint, and OneDrive setup with permissions configuration and staff training.
 - [Paid Digital Strategy Sessions](https://www.ellatechsolutions.com/services/digital-strategy): Focused 30-to-60 minute consultation delivering a technology audit and prioritized action plan, no long-term commitment required.
-
-## Who We Serve
-
-**Primary:** Nonprofits with annual budgets between $500,000 and $5 million. Mission-driven pricing is available for verified 501(c)(3) organizations.
-
-**Secondary:** Service-based small businesses with 5 to 20 employees, nationwide.
-
-**Not served:** Schools, K-12 programs, and school districts.
 
 ## About the Founder
 

@@ -1,4 +1,5 @@
 import Button from "../components/Button.jsx";
+import { CONTACT_PHONE, CONTACT_PHONE_TEL } from "../data/site.js";
 
 const Hero = () => {
   return (
@@ -40,7 +41,18 @@ const Hero = () => {
           <p className="max-w-440 mb-6 body-1 max-md:mb-6 max-md:text-base max-md:leading-relaxed text-p5">
             We build websites and run the SEO that gets your business showing up, and getting calls, when people nearby search for what you do. Built for local service businesses, live in as little as two weeks.
           </p>
-          <Button href="https://cal.com/ella-tech-7ze7wk" icon="/images/zap.svg">Get Found Locally</Button>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+            <Button href="https://cal.com/ella-tech-7ze7wk" icon="/images/zap.svg">Get Found Locally</Button>
+            <a
+              href={`tel:${CONTACT_PHONE_TEL}`}
+              className="text-p4 font-semibold text-base hover:underline"
+            >
+              Or call {CONTACT_PHONE}
+            </a>
+          </div>
+          <p className="mt-5 text-sm text-p5">
+            Live within 2 weeks, guaranteed &middot; Plans from $1,200 &middot; Free 30-minute consultation
+          </p>
         </div>
       </div>
     </section>

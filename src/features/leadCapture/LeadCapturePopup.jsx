@@ -5,12 +5,17 @@ const API_BASE = import.meta.env.VITE_API_BASE_URL || "";
 const STORAGE_KEY = "ella_lead_popup_dismissed";
 const isValidEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
+const COOLDOWN_MS = 14 * 24 * 60 * 60 * 1000;
+const NO_POPUP_PATHS = ["/admin", "/crm-checklist", "/tech-health-check"];
+
+// Subscribers never see it again; anyone who dismissed it is left alone for
+// two weeks (and for the rest of the current session).
 const hasDismissed = () => {
   try {
     const val = localStorage.getItem(STORAGE_KEY);
     if (!val) return false;
-    const { reason } = JSON.parse(val);
-    return reason === "subscribed";
+    const { reason, at } = JSON.parse(val);
+    return reason === "subscribed" || Date.now() - at < COOLDOWN_MS;
   } catch {
     return false;
   }
@@ -44,20 +49,40 @@ const LeadCapturePopup = () => {
 
   useEffect(() => {
     if (hasDismissed()) return;
-    if (window.location.pathname.startsWith("/admin")) return;
+    if (NO_POPUP_PATHS.some((p) => window.location.pathname.startsWith(p))) return;
 
-    // Show after 2.5 seconds so the page has time to paint
-    const timer = setTimeout(() => {
+    // Don't interrupt the first impression: wait until the visitor has read a
+    // good part of the page, been here a while, or is about to leave.
+    let shown = false;
+    const show = () => {
+      if (shown) return;
+      shown = true;
+      cleanup();
       setVisible(true);
       requestAnimationFrame(() => setAnimateIn(true));
-    }, 2500);
+    };
+    const onScroll = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      if (max > 0 && window.scrollY / max > 0.6) show();
+    };
+    const onMouseOut = (e) => {
+      if (!e.relatedTarget && e.clientY <= 0) show();
+    };
+    const timer = setTimeout(show, 45000);
+    function cleanup() {
+      clearTimeout(timer);
+      window.removeEventListener("scroll", onScroll);
+      document.removeEventListener("mouseout", onMouseOut);
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    document.addEventListener("mouseout", onMouseOut);
 
-    return () => clearTimeout(timer);
+    return cleanup;
   }, []);
 
   const close = useCallback((reason) => {
     setAnimateIn(false);
-    if (reason === "subscribed") markDismissed("subscribed");
+    markDismissed(reason === "subscribed" ? "subscribed" : "dismissed");
     setTimeout(() => setVisible(false), 300);
   }, []);
 
