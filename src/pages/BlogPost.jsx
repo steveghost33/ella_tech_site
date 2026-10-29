@@ -19,7 +19,7 @@ function BlogPost() {
 
   if (!post) {
     return (
-      <PageShell mainClassName="overflow-hidden pt-[140px] sm:pt-[200px] min-h-screen bg-s1">
+      <PageShell mainClassName="overflow-hidden pt-[148px] sm:pt-[200px] min-h-screen bg-s1">
         <div className="container max-w-3xl mx-auto px-6 py-20 text-center font-poppins">
           <p className="text-p1 text-sm font-semibold uppercase tracking-widest mb-4">404</p>
           <h1 className="h2 text-p4 mb-6">Post not found</h1>
@@ -88,7 +88,7 @@ function BlogPost() {
         <meta property="article:section" content={post.category} />
       </Helmet>
 
-      <PageShell mainClassName="overflow-hidden pt-[140px] sm:pt-[200px] min-h-screen bg-s1">
+      <PageShell mainClassName="overflow-hidden pt-[148px] sm:pt-[200px] min-h-screen bg-s1">
         <article className="relative pt-12 pb-32 bg-s1 font-poppins">
           <div className="container max-w-3xl mx-auto px-6">
 

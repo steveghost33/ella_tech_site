@@ -13,7 +13,7 @@ function TermsOfUse() {
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
 
-      <PageShell mainClassName="overflow-hidden pt-[140px] sm:pt-[200px] min-h-screen bg-s1">
+      <PageShell mainClassName="overflow-hidden pt-[148px] sm:pt-[200px] min-h-screen bg-s1">
         <section className="relative py-16 max-md:py-12 font-poppins text-p5">
           <div className="container max-w-4xl">
             <div className="text-center mb-16">

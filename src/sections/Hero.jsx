@@ -30,7 +30,7 @@ const Hero = () => {
           <img
             src="/images/ellalogo.svg"
             alt="Ella Tech Solutions"
-            className="theme-logo h-7 w-auto mb-5 max-lg:mb-6 max-md:hidden"
+            className="theme-logo h-10 max-md:h-9 w-auto mb-8 max-md:mb-6"
           />
           <div className="mb-3 text-[13px] max-md:text-[11px] font-semibold tracking-[0.15em] max-md:tracking-[0.12em] uppercase text-p3/70">
             Detroit-Based. Serving Local Businesses Nationwide.

@@ -39,7 +39,7 @@ function FaqPage() {
         schema={[schema, breadcrumbSchema]}
       />
 
-      <PageShell mainClassName="overflow-hidden pt-[140px] sm:pt-[200px] min-h-screen bg-s1">
+      <PageShell mainClassName="overflow-hidden pt-[148px] sm:pt-[200px] min-h-screen bg-s1">
         <section className="relative pt-16 pb-24 max-lg:pt-12 max-lg:pb-20 bg-s1 font-poppins text-p5">
           <div className="container max-w-3xl mx-auto">
 
