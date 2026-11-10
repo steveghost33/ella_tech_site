@@ -340,6 +340,17 @@ const LeadCapturePopup = () => {
                   </button>
                 </form>
 
+                <div className="mt-3 pt-3 border-t border-slate-100 text-center">
+                  <p className="text-xs text-slate-400 mb-1">Or take 5 minutes for a free self-check</p>
+                  <a
+                    href="/tech-health-check"
+                    onClick={() => close()}
+                    className="text-sm font-semibold text-blue-600 hover:underline transition"
+                  >
+                    Try the Free Tech Health Check
+                  </a>
+                </div>
+
                 <div className="mt-4 flex items-center justify-between">
                   <p className="text-xs text-slate-400">No spam. Unsubscribe anytime.</p>
                   <button
