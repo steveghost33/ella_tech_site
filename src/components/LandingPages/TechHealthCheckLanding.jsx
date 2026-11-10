@@ -412,6 +412,7 @@ export default function TechHealthCheckLanding() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
                 href={mailtoHref}
+                onClick={(e) => { e.preventDefault(); window.location.href = mailtoHref; }}
                 className="notch [--notch:10px] inline-flex items-center gap-2 bg-p1 text-s1 font-bold uppercase tracking-wide px-7 py-4 text-[14px] transition hover:bg-p4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-p1 w-full sm:w-auto justify-center"
               >
                 Email me for my personal Tech Health Check
