@@ -385,7 +385,7 @@ const LeadCapturePopup = () => {
                         id="popup-tried"
                         value={triedBefore} onChange={(e) => setTriedBefore(e.target.value)}
                         disabled={loading}
-                        placeholder="What have you already tried? (optional: tools, services, approaches)"
+                        placeholder="What have you already tried? (optional — tools, services, approaches)"
                         rows={2}
                         maxLength={300}
                         className="w-full rounded-xl border border-slate-200 px-4 py-3 text-slate-800 text-[15px] outline-none transition focus:ring-2 focus:ring-blue-500/40 disabled:opacity-50 resize-none"

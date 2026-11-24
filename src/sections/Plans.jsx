@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Element } from "react-scroll";
 import { plans } from "../constants/index.jsx";
 import Button from "../components/Button.jsx";
@@ -18,17 +19,35 @@ const pricingPromises = [
 ];
 
 function Plans() {
+  const [expandedIds, setExpandedIds] = useState([]);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const toggleExpand = (id) =>
+    setExpandedIds((prev) =>
+      prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
+    );
+
   return (
-    <Element name="plans">
-      <section id="plans" className="py-16 bg-s1 scroll-mt-[140px]">
+    <Element name="services">
+      <section id="services" className="py-16 bg-s1">
         <div className="container mx-auto px-4">
 
           {/* Header */}
           <div className="text-center mb-12">
             <div className="text-sm md:text-base text-p3 font-medium tracking-wide">
-              For local businesses
+              How it works
             </div>
-            <h2 className="mt-2 font-bold text-p4 uppercase text-4xl md:text-5xl max-md:text-3xl">
+            <h2 className="mt-2 font-bold text-p4 uppercase text-4xl md:text-5xl">
               Three Ways to Get Found
             </h2>
             <p className="mt-4 text-p5 max-w-2xl mx-auto body-1">
@@ -39,6 +58,8 @@ function Plans() {
           {/* Cards, 3-column grid on large screens, 2-column on medium, 1-column on mobile */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-8 max-w-6xl mx-auto">
             {plans.map(({ id, title, bestFor, description, details }) => {
+              const isExpanded = expandedIds.includes(id);
+
               return (
                 <div
                   key={id}
@@ -56,8 +77,8 @@ function Plans() {
                     <div className="mt-1 flex-1 pr-1">
                       <p className="text-p5">{description}</p>
 
-                      {details && (
-                        <ul className="mt-4 list-disc list-inside text-p5 space-y-1">
+                      {(isMobile || isExpanded) && details && (
+                        <ul id={`plan-details-${id}`} className="mt-4 list-disc list-inside text-p5 space-y-1">
                           {details.map((item, i) => (
                             <li key={i}>{item}</li>
                           ))}
@@ -65,6 +86,18 @@ function Plans() {
                       )}
                     </div>
 
+                    {!isMobile && details && (
+                      <div className="mt-auto pt-4 border-t border-white/10">
+                        <button
+                          onClick={() => toggleExpand(id)}
+                          className="text-p3 font-medium hover:underline transition"
+                          aria-expanded={isExpanded}
+                          aria-controls={`plan-details-${id}`}
+                        >
+                          {isExpanded ? "Show Less" : "Show More"}
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </div>
               );
@@ -86,26 +119,9 @@ function Plans() {
             </ul>
           </div>
 
-          <div id="guarantee" className="max-w-3xl mx-auto mb-10 rounded-[2rem] border border-p1/30 bg-s2/60 p-6 md:p-8 scroll-mt-[160px]">
-            <h3 className="text-p4 font-bold text-xl md:text-2xl mb-4">
-              Live in 2 weeks, or your first month of monitoring is free.
-            </h3>
-            <dl className="space-y-3 text-p5">
-              <div>
-                <dt className="font-semibold text-p4">What &ldquo;live&rdquo; means</dt>
-                <dd>Your new site is published at your own web address and works on phones and computers, and your Google Business Profile is set up and submitted to Google for verification. Google decides how long verification takes.</dd>
-              </div>
-              <div>
-                <dt className="font-semibold text-p4">What you provide</dt>
-                <dd>Your business details and hours, your services and service area, your logo and photos, any text you want used, and access to your domain and Google account.</dd>
-              </div>
-              <div>
-                <dt className="font-semibold text-p4">When the 2 weeks starts</dt>
-                <dd>The day I have everything on that list. From then, your site is live within 14 calendar days. If I am waiting on your feedback, the clock pauses until you reply.</dd>
-              </div>
-            </dl>
-            <p className="mt-4 text-sm text-p5/80">This guarantee applies to the local business plans. Nonprofit projects are scoped in a written proposal.</p>
-          </div>
+          <p className="text-center text-p4 font-semibold mb-6 max-w-3xl mx-auto">
+            The guarantee: if your site and Google Business Profile aren&rsquo;t live within 2 weeks of you providing content, you get a free month of monitoring.
+          </p>
 
           {/* Two paths: ready to talk, or not ready yet */}
           <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-4 mb-4">
@@ -123,10 +139,10 @@ function Plans() {
       <section className="py-20 bg-s2">
         <div className="container mx-auto px-4 text-center max-w-2xl">
           <h2 className="font-bold text-p4 uppercase text-3xl md:text-4xl mb-4">
-            Not sure which plan fits?
+            Not sure where to start? That is exactly why we are here.
           </h2>
           <p className="text-p5 body-1 mb-10">
-            Book a free 30 minute call. I will tell you which plan fits your business and give you one flat price in writing.
+            Book a free 30-minute call and we will tell you which plan fits your business and give you one flat price in writing. No pitch, no pressure.
           </p>
           <Button href="https://cal.com/ella-tech-7ze7wk" containerClassName="inline-block mx-auto">
             Get Found Locally

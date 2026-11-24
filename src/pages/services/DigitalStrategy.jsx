@@ -45,7 +45,7 @@ const faqSchema = {
       name: "Can I book a strategy session before committing to a larger project?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes. A strategy session is a good way to decide whether to proceed with a CRM implementation, website build, or other project. The session is designed to give you enough clarity to make that decision confidently.",
+        text: "Yes. Many clients begin with a strategy session before deciding whether to proceed with a CRM implementation, website build, or other project. The session is designed to give you enough clarity to make that decision confidently.",
       },
     },
     {
@@ -144,7 +144,7 @@ function DigitalStrategy() {
                 </div>
                 <div>
                   <dt className="h5 text-p4 mb-2">Can I book a strategy session before committing to a larger project?</dt>
-                  <dd className="body-1 text-p5">Yes. A strategy session is a good way to decide whether to proceed with a CRM implementation, website build, or other project. The session is designed to give you enough clarity to make that decision confidently.</dd>
+                  <dd className="body-1 text-p5">Yes. Many clients begin with a strategy session before deciding whether to proceed with a CRM implementation, website build, or other project. The session is designed to give you enough clarity to make that decision confidently.</dd>
                 </div>
                 <div>
                   <dt className="h5 text-p4 mb-2">Do you charge for the initial consultation?</dt>

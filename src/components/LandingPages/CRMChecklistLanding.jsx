@@ -77,7 +77,7 @@ const CRMChecklistLanding = () => {
               Get the Free CRM Setup Checklist
             </h1>
             <p className="text-slate-500 text-lg leading-relaxed mb-8">
-              Step-by-step guide to choose and implement a CRM in 3 weeks,
+              Step-by-step guide to choose and implement a CRM in 3 weeks —
               without the chaos, the wrong tool, or the adoption problems.
             </p>
             <ul className="space-y-4 mb-8">

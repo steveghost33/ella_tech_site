@@ -45,7 +45,7 @@ function TechSolutions() {
           <div className="container mb-20 max-w-3xl mx-auto text-center">
             <h2 className="h3 text-p4 mb-4">The problem is not the tool. It is the implementation.</h2>
             <p className="body-1 text-p5">
-              Most organizations do not need better software. They need better systems. I spent 15 years working in education, learning design and technology, including leading learning systems for a large school district and directing learning and development at a Detroit nonprofit. That work taught me what it takes to get tools adopted, not just installed.
+              Most organizations do not need better software. They need better systems. The Ella Tech team has spent 15 years building technology infrastructure inside nonprofits, small businesses, and growing organizations. We know what it takes to get tools adopted, not just installed.
             </p>
           </div>
 
@@ -83,7 +83,7 @@ function TechSolutions() {
               <div className="max-w-2xl">
                 <h2 className="h3 text-p4 mb-4">Digital Strategy Consulting</h2>
                 <p className="body-1 text-p5 mb-6">
-                  Not sure where to start? Book a free 30 minute consultation and I will give you a clear picture of your technology gaps and the best next steps.
+                  Not sure where to start? Book a free 30-minute consultation and we will give you a clear picture of your technology gaps and the best next steps. No commitment required.
                 </p>
                 <ul className="list-disc pl-5 space-y-2 body-3 text-p5 mb-8">
                   <li>Technology audit and gap analysis</li>

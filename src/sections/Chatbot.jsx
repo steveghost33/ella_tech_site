@@ -51,21 +51,6 @@ function Chatbot() {
     reDock();
   }, [location.pathname, location.hash]);
 
-  // On phones, keep the chat bubble out of the first screen so it never
-  // covers the hero text or buttons. It appears once the visitor scrolls.
-  const [showToggle, setShowToggle] = useState(true);
-  useEffect(() => {
-    const update = () =>
-      setShowToggle(window.innerWidth >= 768 || window.scrollY > 300);
-    update();
-    window.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update);
-    return () => {
-      window.removeEventListener("scroll", update);
-      window.removeEventListener("resize", update);
-    };
-  }, [location.pathname]);
-
   useEffect(() => {
     const onMobileMenu = (event) => {
       if (event?.detail?.open) {
@@ -406,7 +391,7 @@ function Chatbot() {
           border: "none",
           cursor: "pointer",
           zIndex: 900,
-          display: showToggle || open ? "flex" : "none",
+          display: "flex",
           alignItems: "center",
           justifyContent: "center",
           fontSize: 14,
