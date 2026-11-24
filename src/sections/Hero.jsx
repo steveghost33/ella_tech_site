@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Button from "../components/Button.jsx";
 import { CONTACT_PHONE, CONTACT_PHONE_TEL } from "../data/site.js";
 
@@ -33,7 +34,7 @@ const Hero = () => {
             className="theme-logo h-10 max-md:h-9 w-auto mb-8 max-md:mb-6"
           />
           <div className="mb-3 text-[13px] max-md:text-[11px] font-semibold tracking-[0.15em] max-md:tracking-[0.12em] uppercase text-p3/70">
-            Detroit-Based. Serving Local Businesses Nationwide.
+            Detroit based. Working with businesses everywhere.
           </div>
           <h1 className="mb-6 h1 text-p4 max-lg:mb-7 max-lg:text-5xl max-lg:leading-tight max-md:mb-4 max-md:text-4xl max-md:leading-tight max-sm:text-3xl">
             Get Found by Your Local Customers
@@ -52,6 +53,12 @@ const Hero = () => {
           </div>
           <p className="mt-5 text-sm text-p5">
             Live within 2 weeks, guaranteed &middot; Simple flat-fee pricing &middot; Free 30-minute consultation
+          </p>
+          <p className="mt-3 text-sm text-p5">
+            Run a nonprofit?{" "}
+            <Link to="/services/nonprofits" className="text-p1 font-semibold hover:underline">
+              See nonprofit services &rarr;
+            </Link>
           </p>
         </div>
       </div>

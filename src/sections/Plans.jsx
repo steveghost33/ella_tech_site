@@ -142,7 +142,7 @@ function Plans() {
             Not sure where to start? That is exactly why we are here.
           </h2>
           <p className="text-p5 body-1 mb-10">
-            Book a free 30-minute call and we will tell you which plan fits your business and give you one flat price in writing. No pitch, no pressure.
+            Book a free 30-minute call and we will tell you which plan fits your business and give you one flat price in writing.
           </p>
           <Button href="https://cal.com/ella-tech-7ze7wk" containerClassName="inline-block mx-auto">
             Get Found Locally

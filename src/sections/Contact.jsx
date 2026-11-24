@@ -5,7 +5,7 @@ import { CONTACT_EMAIL, CONTACT_PHONE, CONTACT_PHONE_TEL } from "../data/site.js
 const deliverables = [
   "A quick look at where you currently show up, and don't, in local search",
   "A clear recommendation on which tier (Get Found, Get Called, or Own the Area) fits your business",
-  "Next steps and a straightforward quote, no pressure",
+  "Next steps and a straightforward quote",
 ];
 
 const Contact = () => {
@@ -81,10 +81,13 @@ const Contact = () => {
                 <ol className="space-y-3">
                   {deliverables.map((item, i) => (
                     <li key={i} className="flex items-start gap-3">
-                      <span className="mt-0.5 flex-shrink-0 w-6 h-6 rounded-full bg-p1/15 border border-p1/40 flex items-center justify-center text-p1 text-xs font-bold">
+                      <span aria-hidden="true" className="mt-0.5 flex-shrink-0 w-6 h-6 rounded-full bg-p1/15 border border-p1/40 flex items-center justify-center text-p1 text-xs font-bold">
                         {i + 1}
                       </span>
-                      <span className="text-p5 leading-relaxed">{item}</span>
+                      <span className="text-p5 leading-relaxed">
+                        <span className="sr-only">{i + 1}. </span>
+                        {item}
+                      </span>
                     </li>
                   ))}
                 </ol>
