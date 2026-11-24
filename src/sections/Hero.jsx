@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Button from "../components/Button.jsx";
 import { CONTACT_PHONE, CONTACT_PHONE_TEL } from "../data/site.js";
 
@@ -52,6 +53,12 @@ const Hero = () => {
           </div>
           <p className="mt-5 text-sm text-p5">
             Live within 2 weeks, guaranteed &middot; Simple flat-fee pricing &middot; Free 30-minute consultation
+          </p>
+          <p className="mt-3 text-sm text-p5">
+            Run a nonprofit?{" "}
+            <Link to="/services/nonprofits" className="text-p1 font-semibold hover:underline">
+              See nonprofit services &rarr;
+            </Link>
           </p>
         </div>
       </div>

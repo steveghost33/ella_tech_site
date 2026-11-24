@@ -12,7 +12,7 @@ const Footer = () => {
         <div className="container py-10 flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
             <p className="text-p4 font-semibold text-lg mb-1">Ready to get found locally? Book a free consultation.</p>
-            <p className="text-p5 text-sm opacity-70">30 minutes. No pitch. Just a clear look at where you stand in local search.</p>
+            <p className="text-p5 text-sm opacity-70">30 minutes. A clear look at where you stand in local search.</p>
           </div>
           <a
             href="https://cal.com/ella-tech-7ze7wk"

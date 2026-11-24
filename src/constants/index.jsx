@@ -109,7 +109,7 @@ export const faq = [
     id: "9",
     question: "How do I get started?",
     answer:
-      "Book a free 30-minute consultation. We will look at where your business currently shows up, or does not, in local search, recommend which plan fits, and give you a clear, written flat-fee quote. No pressure to move forward.",
+      "Book a free 30-minute consultation. We will look at where your business currently shows up, or does not, in local search, recommend which plan fits, and give you a clear, written flat-fee quote.",
   },
 ];
 
