@@ -1,7 +1,6 @@
 import Button from "../../components/Button.jsx";
 import PageSEO from "../../components/PageSEO.jsx";
 import PageShell from "../../components/PageShell.jsx";
-import Placeholder from "../../components/Placeholder.jsx";
 import { useScrollToHash } from "../../hooks/useScrollToHash.js";
 import { NONPROFIT_BOOKING_URL, SITE_URL } from "../../data/site.js";
 
@@ -42,8 +41,9 @@ const services = [
       "A new website that says clearly what you do, who you serve and how people can help. It works on phones, loads quickly, and is built so your staff can update programs, events and news without calling a developer. Donation, volunteer and contact forms send information to your records instead of sitting in someone's inbox.",
     details: [
       "A review of your current site and what visitors need to find",
-      <>A new page structure and help with the writing <Placeholder>confirm whether you write the copy, edit theirs, or both</Placeholder></>,
+      "A new page structure, with the writing done for you or your existing text edited, whichever you prefer",
       "Donation, volunteer signup and contact forms",
+      "Accessibility basics: readable text and contrast, image descriptions, and keyboard friendly navigation",
       "Training for the staff who will keep the site updated",
     ],
   },
@@ -66,8 +66,8 @@ const services = [
     details: [
       "Sessions grouped by role, so people learn what they will use",
       "Step by step guides and short recordings",
-      <Placeholder key="format">in person in Detroit, online, or both</Placeholder>,
-      <Placeholder key="followup">whether a follow up session is included</Placeholder>,
+      "In person in Detroit or online, whichever works for your team",
+      "A follow up check in about a month later to answer new questions",
     ],
   },
   {
@@ -92,7 +92,7 @@ const nonprofitSteps = [
     title: "Paid strategy session",
     text: (
       <>
-        A working session where we go through your website, tools and records in detail and agree on priorities. The strategy session is paid: <Placeholder>price, length, and whether the fee is credited toward the project</Placeholder>
+        A working session where we go through your website, tools and records in detail and agree on priorities. The strategy session is $250 and takes about 90 minutes. If you go ahead with a project within 30 days, the full $250 is credited toward it.
       </>
     ),
   },
@@ -100,7 +100,7 @@ const nonprofitSteps = [
     title: "Written proposal",
     text: (
       <>
-        You get a written proposal with the scope, timeline and price, in a form you can share with your board. <Placeholder>how many business days after the strategy session</Placeholder>
+        You get a written proposal with the scope, timeline and price, in a form you can share with your board, within 5 business days of the strategy session.
       </>
     ),
   },
@@ -108,7 +108,7 @@ const nonprofitSteps = [
     title: "Build and training",
     text: (
       <>
-        I do the work, keep you updated along the way, and train your staff before handoff so the work keeps going after I&rsquo;m done. <Placeholder>how often you send updates, for example weekly</Placeholder>
+        I do the work, keep you updated along the way, and train your staff before handoff so the work keeps going after I&rsquo;m done. You get a short written update every week and a check in call at each milestone.
       </>
     ),
   },
@@ -203,7 +203,7 @@ function Nonprofits() {
               ))}
             </div>
             <p className="body-3 text-p5 text-center mt-8 max-w-2xl mx-auto">
-              Also available: Microsoft 365 setup, learning platforms for staff onboarding, and grant readiness support. <Placeholder>confirm which of these you want to keep listing</Placeholder>
+              Also available: <a href="/services/grant-writing" className="text-p1 font-semibold hover:underline">grant writing and grant readiness</a>, Microsoft 365 setup, and learning platforms for staff onboarding.
             </p>
           </div>
 
@@ -229,13 +229,13 @@ function Nonprofits() {
             <div className="bg-s2 rounded-3xl p-10 md:p-14 max-md:p-6 border border-white/10 max-w-4xl mx-auto">
               <h2 className="h4 text-p4 mb-4">What it costs</h2>
               <p className="body-1 text-p5 mb-4">
-                A standard nonprofit website build is $2,500 to $5,000. <Placeholder>what a standard build includes, for example number of pages, donation and volunteer forms, and staff training</Placeholder>
+                A standard nonprofit website build is $2,500 to $5,000. A standard build includes up to 8 pages, writing or editing of the page text, donation, volunteer and contact forms connected to the tools you already use, accessibility basics, and a training session for the staff who will keep the site updated.
               </p>
               <p className="body-1 text-p5 mb-4">
                 Larger builds, such as sites with online payments, facility rentals or a connection to your CRM, are quoted after the strategy session. CRM setup, staff training and AI work are also quoted after the strategy session, because the right scope depends on your size and the tools you already have.
               </p>
-              <p className="body-3 text-p5">
-                <Placeholder>whether the 501(c)(3) discount still applies, and whether the $2,500 to $5,000 range already includes it</Placeholder>
+              <p className="body-1 text-p5">
+                These prices are set with nonprofit budgets in mind. Every project gets a written, fixed price before any work starts.
               </p>
             </div>
           </div>

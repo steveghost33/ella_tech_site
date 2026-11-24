@@ -1,5 +1,4 @@
 import { Element } from "react-scroll";
-import Placeholder from "../components/Placeholder.jsx";
 import { plans } from "../constants/index.jsx";
 import Button from "../components/Button.jsx";
 
@@ -98,11 +97,11 @@ function Plans() {
               </div>
               <div>
                 <dt className="font-semibold text-p4">What you provide</dt>
-                <dd>Your business details and hours, your services and service area, your logo and photos, any text you want used, and access to your domain and Google account. <Placeholder>minimum number of photos, if any</Placeholder></dd>
+                <dd>Your business details and hours, your services and service area, your logo and photos, any text you want used, and access to your domain and Google account.</dd>
               </div>
               <div>
                 <dt className="font-semibold text-p4">When the 2 weeks starts</dt>
-                <dd>The day I have everything on that list. If I am waiting on your feedback, the clock pauses until you reply. <Placeholder>14 calendar days or 10 business days; confirm the clock pauses for feedback</Placeholder></dd>
+                <dd>The day I have everything on that list. From then, your site is live within 14 calendar days. If I am waiting on your feedback, the clock pauses until you reply.</dd>
               </div>
             </dl>
             <p className="mt-4 text-sm text-p5/80">This guarantee applies to the local business plans. Nonprofit projects are scoped in a written proposal.</p>

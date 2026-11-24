@@ -485,3 +485,18 @@ Choices made where you had not decided yet (easy to change):
 6. On phones, the chat bubble now appears only after the visitor scrolls past the first screen.
 
 Every unfilled [ADD: ...] item shows on the page as yellow highlighted text so it cannot be missed in preview. Before publishing, search the code for "[ADD:" and "<Placeholder" and confirm none remain.
+
+
+# Decisions filled in before publishing
+
+1. Strategy session: $250, about 90 minutes, fully credited toward a project started within 30 days.
+2. Written proposal: within 5 business days of the strategy session.
+3. Project updates: a short written update every week, plus a check in call at each milestone.
+4. Standard nonprofit build ($2,500 to $5,000): up to 8 pages, writing or editing of page text, donation, volunteer and contact forms connected to existing tools, accessibility basics, and one staff training session.
+5. Discount: no separate 501(c)(3) discount on the Nonprofits page; the line reads "These prices are set with nonprofit budgets in mind." The Grant Writing and Tech Solutions pages still mention mission-driven pricing and were left as they were.
+6. Guarantee: 14 calendar days, no photo minimum, clock pauses while waiting on client feedback.
+7. Copy: you write new copy or edit theirs. Training: in person in Detroit or online, with a follow up check in about a month later.
+8. Also available on the Nonprofits page: grant writing and grant readiness (linked), Microsoft 365, learning platforms.
+9. Team Cabin: single page site with streaming links and show listings, built with React and Vite. The site could not be reached from this environment, so these details come from your description and the repository's earlier project notes.
+10. About: no credentials listed.
+11. Booking: nonprofit buttons say "free 20 minute conversation" but still open your current 30 minute Cal.com link until a 20 minute event exists.

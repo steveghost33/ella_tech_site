@@ -22,7 +22,6 @@ export const webProjectsSchema = {
 };
 
 // Each entry: what was built, what it does, what comes next.
-// Fields named *Placeholder are copy the owner still has to supply.
 // `published: false` keeps an entry off the live site until it is confirmed.
 export const workEntries = [
   {
@@ -33,12 +32,10 @@ export const workEntries = [
     imgAlt: "Screenshot of the Team Cabin band website",
     link: "https://weareteamcabin.com",
     linkLabel: "Visit weareteamcabin.com",
-    built: "A single page website for Team Cabin, my band.",
-    builtPlaceholder: "year built, and the tools you used if you want them listed",
+    built: "A single page website for Team Cabin, my band, built with React and Vite.",
     does: "Gives fans one place to find the band's music on streaming services and see upcoming shows.",
     next:
       "Add an email signup so fans hear about new shows. Connect the show list to a shared calendar so the band can update dates without editing the site. Add a short page for venues with photos and a bio.",
-    nextPlaceholder: "confirm or replace these next steps",
   },
   {
     id: "demo-facility-rentals",

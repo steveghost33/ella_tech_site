@@ -7,6 +7,6 @@ export const BOOKING_HASH = "https://cal.com/ella-tech-7ze7wk";
 export const BOOKING_PATH = "https://cal.com/ella-tech-7ze7wk";
 
 
-// [ADD: Cal.com link for a 20 minute nonprofit conversation]. Until it exists,
-// nonprofit buttons fall back to the main booking link.
+// Nonprofit "free 20 minute conversation" buttons. Swap in a dedicated
+// 20 minute Cal.com event link when one exists.
 export const NONPROFIT_BOOKING_URL = "https://cal.com/ella-tech-7ze7wk";

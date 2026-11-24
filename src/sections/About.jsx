@@ -1,5 +1,4 @@
 import Button from "../components/Button.jsx";
-import Placeholder from "../components/Placeholder.jsx";
 import { BOOKING_PATH } from "../data/site.js";
 
 function About() {
@@ -21,11 +20,8 @@ function About() {
             <p className="body-1 text-p5 mb-5">
               I spent 15 years working in education, learning design and technology. I led learning systems for a large school district, and I directed learning and development at a Detroit nonprofit. Much of that work came down to the same job: choosing tools that fit how people actually work, setting them up, and teaching staff to use them with confidence.
             </p>
-            <p className="body-1 text-p5 mb-5">
+            <p className="body-1 text-p5 mb-8">
               That is the work I do now, for nonprofits, community organizations and local businesses. When you reach out, you talk with me.
-            </p>
-            <p className="body-3 text-p5 mb-8">
-              <Placeholder>optional: degrees, certifications or memberships, exactly as you want them worded. Delete this line if none.</Placeholder>
             </p>
             <Button href={BOOKING_PATH}>Book a free conversation</Button>
           </div>

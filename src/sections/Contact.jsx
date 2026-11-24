@@ -1,6 +1,5 @@
 import { Element } from "react-scroll";
 import CalInlineEmbed from "../components/CalInlineEmbed.jsx";
-import Placeholder from "../components/Placeholder.jsx";
 import { CONTACT_EMAIL, CONTACT_PHONE, CONTACT_PHONE_TEL } from "../data/site.js";
 
 const deliverables = [
@@ -67,9 +66,6 @@ const Contact = () => {
                   For nonprofits, community organizations and local
                   businesses. We&rsquo;ll cover your current tools, what&rsquo;s
                   slowing you down, and what to fix first.
-                </p>
-                <p className="text-p5/80 text-sm mt-3">
-                  <Placeholder>one call length for everyone, or a separate 20 minute link for nonprofits (the current link is 30 minutes)</Placeholder>
                 </p>
               </div>
 
