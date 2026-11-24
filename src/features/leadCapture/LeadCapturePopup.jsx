@@ -119,7 +119,7 @@ const LeadCapturePopup = () => {
     const onMouseOut = (e) => {
       if (!e.relatedTarget && e.clientY <= 0) show();
     };
-    const timer = setTimeout(show, 45000);
+    const timer = setTimeout(show, 10000);
     function cleanup() {
       clearTimeout(timer);
       window.removeEventListener("scroll", onScroll);
