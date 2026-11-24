@@ -32,6 +32,13 @@ async function runMigrations() {
       console.warn("⚠️  Only " + result.rows.length + " columns found (expected 6)");
     }
 
+    console.log("\n📋 Migration 002: Adding intake_data column for lead qualifying fields");
+    await pool.query(`
+      ALTER TABLE subscribers
+      ADD COLUMN IF NOT EXISTS intake_data JSONB;
+    `);
+    console.log("✅ Migration 002 completed");
+
     console.log("\n✨ All migrations completed successfully");
     process.exit(0);
   } catch (error) {

@@ -8,8 +8,6 @@ const isValidEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 const COOLDOWN_MS = 14 * 24 * 60 * 60 * 1000;
 const NO_POPUP_PATHS = ["/admin", "/crm-checklist", "/tech-health-check"];
 
-// Subscribers never see it again; anyone who dismissed it is left alone for
-// two weeks (and for the rest of the current session).
 const hasDismissed = () => {
   try {
     const val = localStorage.getItem(STORAGE_KEY);
@@ -24,10 +22,59 @@ const hasDismissed = () => {
 const markDismissed = (reason = "dismissed") => {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify({ reason, at: Date.now() }));
-  } catch {
-    // Storage unavailable; the popup may show again next visit, which is fine.
-  }
+  } catch {}
 };
+
+const BIZ_TYPES = [
+  "Retail / E-commerce",
+  "Service Business (cleaning, landscaping, salon, etc.)",
+  "Healthcare / Wellness",
+  "Restaurant / Food & Beverage",
+  "Professional Services (law, accounting, consulting)",
+  "Nonprofit Organization",
+  "Education / Training",
+  "Real Estate",
+  "Construction / Trades",
+  "Other",
+];
+
+const TEAM_SIZES = [
+  "Just me (solopreneur)",
+  "2–5 people",
+  "6–20 people",
+  "21–50 people",
+  "50+ people",
+];
+
+const CHALLENGES = [
+  "Getting found online / local search",
+  "Managing customers and follow-ups (CRM)",
+  "My team doesn't use our tools effectively",
+  "Need a website or redesign",
+  "Setting up AI tools and automation",
+  "Microsoft 365 or Google Workspace setup",
+  "Applying for grants or funding",
+  "Something else",
+];
+
+const selectClass = (hasError) =>
+  `w-full rounded-xl border px-4 py-3 text-slate-800 text-[15px] outline-none transition focus:ring-2 focus:ring-blue-500/40 disabled:opacity-50 bg-white appearance-none cursor-pointer ${
+    hasError ? "border-red-400 bg-red-50" : "border-slate-200"
+  }`;
+
+const inputClass = (hasError) =>
+  `w-full rounded-xl border px-4 py-3 text-slate-800 text-[15px] outline-none transition focus:ring-2 focus:ring-blue-500/40 disabled:opacity-50 ${
+    hasError ? "border-red-400 bg-red-50" : "border-slate-200"
+  }`;
+
+const ChevronDown = () => (
+  <svg
+    className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400"
+    fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+  >
+    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+  </svg>
+);
 
 const LeadCapturePopup = () => {
   const [visible, setVisible] = useState(false);
@@ -35,16 +82,20 @@ const LeadCapturePopup = () => {
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [businessName, setBusinessName] = useState("");
-  const [businessLocation, setBusinessLocation] = useState("");
+  const [bizType, setBizType] = useState("");
+  const [teamSize, setTeamSize] = useState("");
+  const [challenge, setChallenge] = useState("");
+  const [triedBefore, setTriedBefore] = useState("");
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [serverError, setServerError] = useState("");
   const [success, setSuccess] = useState(false);
+
   const nameRef = useRef(null);
   const emailRef = useRef(null);
-  const businessNameRef = useRef(null);
-  const businessLocationRef = useRef(null);
+  const bizTypeRef = useRef(null);
+  const teamSizeRef = useRef(null);
+  const challengeRef = useRef(null);
   const dialogRef = useRef(null);
   const closeButtonRef = useRef(null);
   const previouslyFocusedRef = useRef(null);
@@ -53,8 +104,6 @@ const LeadCapturePopup = () => {
     if (hasDismissed()) return;
     if (NO_POPUP_PATHS.some((p) => window.location.pathname.startsWith(p))) return;
 
-    // Don't interrupt the first impression: wait until the visitor has read a
-    // good part of the page, been here a while, or is about to leave.
     let shown = false;
     const show = () => {
       if (shown) return;
@@ -88,7 +137,6 @@ const LeadCapturePopup = () => {
     setTimeout(() => setVisible(false), 300);
   }, []);
 
-  // Close on Escape
   useEffect(() => {
     if (!visible) return;
     const handler = (e) => { if (e.key === "Escape") close(); };
@@ -96,14 +144,12 @@ const LeadCapturePopup = () => {
     return () => document.removeEventListener("keydown", handler);
   }, [visible, close]);
 
-  // Lock body scroll while open
   useEffect(() => {
     if (visible) document.body.style.overflow = "hidden";
     else document.body.style.overflow = "";
     return () => { document.body.style.overflow = ""; };
   }, [visible]);
 
-  // Move focus into the dialog on open, and back to the trigger on close.
   useEffect(() => {
     if (visible) {
       previouslyFocusedRef.current = document.activeElement;
@@ -112,12 +158,10 @@ const LeadCapturePopup = () => {
       });
       return () => cancelAnimationFrame(raf);
     }
-
     previouslyFocusedRef.current?.focus?.();
     previouslyFocusedRef.current = null;
   }, [visible]);
 
-  // Trap Tab focus inside the dialog while it's open.
   useEffect(() => {
     if (!visible) return;
     const handler = (e) => {
@@ -129,11 +173,9 @@ const LeadCapturePopup = () => {
       const first = focusable[0];
       const last = focusable[focusable.length - 1];
       if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault();
-        last.focus();
+        e.preventDefault(); last.focus();
       } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
+        e.preventDefault(); first.focus();
       }
     };
     document.addEventListener("keydown", handler);
@@ -144,19 +186,21 @@ const LeadCapturePopup = () => {
 
   const handleSubmit = async (ev) => {
     ev.preventDefault();
-    // Read directly from DOM to handle browser autofill
     const nameVal = (nameRef.current?.value || name).trim();
     const emailVal = (emailRef.current?.value || email).trim().toLowerCase();
-    const businessNameVal = (businessNameRef.current?.value || businessName).trim();
-    const businessLocationVal = (businessLocationRef.current?.value || businessLocation).trim();
+    const bizTypeVal = (bizTypeRef.current?.value || bizType).trim();
+    const teamSizeVal = (teamSizeRef.current?.value || teamSize).trim();
+    const challengeVal = (challengeRef.current?.value || challenge).trim();
 
     const e = {};
     if (!nameVal) e.name = "Name is required.";
     if (!emailVal) e.email = "Email is required.";
     else if (!isValidEmail(emailVal)) e.email = "Please enter a valid email.";
-    if (!businessNameVal) e.business_name = "Business name is required.";
-    if (!businessLocationVal) e.business_location = "Business location is required.";
+    if (!bizTypeVal) e.biz_type = "Please select your business type.";
+    if (!teamSizeVal) e.team_size = "Please select your team size.";
+    if (!challengeVal) e.challenge = "Please select your biggest challenge.";
     if (Object.keys(e).length) { setErrors(e); return; }
+
     setErrors({});
     setServerError("");
     setLoading(true);
@@ -168,9 +212,11 @@ const LeadCapturePopup = () => {
         body: JSON.stringify({
           name: nameVal,
           email: emailVal,
-          business_name: businessNameVal,
-          business_location: businessLocationVal,
-          source: "local-seo-audit-popup",
+          biz_type: bizTypeVal,
+          team_size: teamSizeVal,
+          challenge: challengeVal,
+          tried_before: triedBefore.trim() || undefined,
+          source: "lead-capture-popup",
         }),
       });
       const data = await res.json();
@@ -209,161 +255,187 @@ const LeadCapturePopup = () => {
               animateIn ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-8 scale-95"
             }`}
           >
-          {/* Header bar */}
-          <div className="relative bg-gradient-to-br from-blue-700 via-blue-600 to-blue-500 px-6 pt-8 pb-6 text-center">
-            <button
-              ref={closeButtonRef}
-              onClick={() => close()}
-              aria-label="Close"
-              className="absolute top-4 right-4 text-white/60 hover:text-white transition"
-            >
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
+            {/* Header */}
+            <div className="relative bg-gradient-to-br from-blue-700 via-blue-600 to-blue-500 px-6 pt-8 pb-6 text-center">
+              <button
+                ref={closeButtonRef}
+                onClick={() => close()}
+                aria-label="Close"
+                className="absolute top-4 right-4 text-white/60 hover:text-white transition"
+              >
+                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
 
-            {/* Logo */}
-            <div className="flex justify-center mb-4">
-              <div className="h-16 w-16 rounded-full bg-white shadow-lg flex items-center justify-center p-2">
-                <img
-                  src="/images/ella-badge-icon.png"
-                  alt="Ella Tech Solutions"
-                  className="h-full w-full object-contain rounded-full"
-                />
+              <div className="flex justify-center mb-4">
+                <div className="h-16 w-16 rounded-full bg-white shadow-lg flex items-center justify-center p-2">
+                  <img
+                    src="/images/ella-badge-icon.png"
+                    alt="Ella Tech Solutions"
+                    className="h-full w-full object-contain rounded-full"
+                  />
+                </div>
               </div>
+
+              <span className="inline-block rounded-full bg-white/15 text-white/90 text-[10px] font-bold uppercase tracking-widest px-3 py-1 mb-3">
+                Free Personalized Snapshot
+              </span>
+              <h2 id="popup-title" className="text-xl font-black text-white leading-snug">
+                Let&rsquo;s see where your tech is holding you back
+              </h2>
+              <p className="text-blue-100 text-sm mt-1.5 leading-relaxed">
+                Answer 5 quick questions and get a free, personalized look at what&rsquo;s costing you time and customers.
+              </p>
             </div>
 
-            <span className="inline-block rounded-full bg-white/15 text-white/90 text-[10px] font-bold uppercase tracking-widest px-3 py-1 mb-3">
-              Free Resources
-            </span>
-            <h2 id="popup-title" className="text-xl font-black text-white leading-snug">
-              Are local customers finding you online?
-            </h2>
-            <p className="text-blue-100 text-sm mt-1.5 leading-relaxed">
-              Get a free local search snapshot for your business, no obligation.
-            </p>
+            {/* Body */}
+            <div className="px-6 py-6">
+              {success ? (
+                <DownloadSuccess name={name} onBookSession={() => close("dismissed")} />
+              ) : (
+                <>
+                  <form onSubmit={handleSubmit} noValidate className="space-y-3">
+                    {/* Name */}
+                    <div>
+                      <label htmlFor="popup-name" className="sr-only">Your first name</label>
+                      <input
+                        id="popup-name" ref={nameRef} type="text" autoComplete="given-name"
+                        value={name} onChange={(e) => setName(e.target.value)}
+                        disabled={loading} placeholder="Your first name"
+                        aria-invalid={errors.name ? "true" : undefined}
+                        aria-describedby={errors.name ? "popup-name-error" : undefined}
+                        className={inputClass(errors.name)}
+                      />
+                      {errors.name && <p id="popup-name-error" role="alert" className="mt-1 text-xs text-red-500">{errors.name}</p>}
+                    </div>
+
+                    {/* Email */}
+                    <div>
+                      <label htmlFor="popup-email" className="sr-only">Email address</label>
+                      <input
+                        id="popup-email" ref={emailRef} type="email" autoComplete="email"
+                        value={email} onChange={(e) => setEmail(e.target.value)}
+                        disabled={loading} placeholder="Email address"
+                        aria-invalid={errors.email ? "true" : undefined}
+                        aria-describedby={errors.email ? "popup-email-error" : undefined}
+                        className={inputClass(errors.email)}
+                      />
+                      {errors.email && <p id="popup-email-error" role="alert" className="mt-1 text-xs text-red-500">{errors.email}</p>}
+                    </div>
+
+                    {/* Business type */}
+                    <div className="relative">
+                      <label htmlFor="popup-biz-type" className="sr-only">What type of business do you run?</label>
+                      <select
+                        id="popup-biz-type" ref={bizTypeRef}
+                        value={bizType} onChange={(e) => setBizType(e.target.value)}
+                        disabled={loading}
+                        aria-invalid={errors.biz_type ? "true" : undefined}
+                        aria-describedby={errors.biz_type ? "popup-biz-type-error" : undefined}
+                        className={selectClass(errors.biz_type)}
+                      >
+                        <option value="">What type of business do you run?</option>
+                        {BIZ_TYPES.map((t) => <option key={t} value={t}>{t}</option>)}
+                      </select>
+                      <ChevronDown />
+                      {errors.biz_type && <p id="popup-biz-type-error" role="alert" className="mt-1 text-xs text-red-500">{errors.biz_type}</p>}
+                    </div>
+
+                    {/* Team size */}
+                    <div className="relative">
+                      <label htmlFor="popup-team-size" className="sr-only">How many people work in your business?</label>
+                      <select
+                        id="popup-team-size" ref={teamSizeRef}
+                        value={teamSize} onChange={(e) => setTeamSize(e.target.value)}
+                        disabled={loading}
+                        aria-invalid={errors.team_size ? "true" : undefined}
+                        aria-describedby={errors.team_size ? "popup-team-size-error" : undefined}
+                        className={selectClass(errors.team_size)}
+                      >
+                        <option value="">How many people work in your business?</option>
+                        {TEAM_SIZES.map((t) => <option key={t} value={t}>{t}</option>)}
+                      </select>
+                      <ChevronDown />
+                      {errors.team_size && <p id="popup-team-size-error" role="alert" className="mt-1 text-xs text-red-500">{errors.team_size}</p>}
+                    </div>
+
+                    {/* Biggest challenge */}
+                    <div className="relative">
+                      <label htmlFor="popup-challenge" className="sr-only">What&apos;s your biggest tech challenge right now?</label>
+                      <select
+                        id="popup-challenge" ref={challengeRef}
+                        value={challenge} onChange={(e) => setChallenge(e.target.value)}
+                        disabled={loading}
+                        aria-invalid={errors.challenge ? "true" : undefined}
+                        aria-describedby={errors.challenge ? "popup-challenge-error" : undefined}
+                        className={selectClass(errors.challenge)}
+                      >
+                        <option value="">What&apos;s your biggest tech challenge?</option>
+                        {CHALLENGES.map((c) => <option key={c} value={c}>{c}</option>)}
+                      </select>
+                      <ChevronDown />
+                      {errors.challenge && <p id="popup-challenge-error" role="alert" className="mt-1 text-xs text-red-500">{errors.challenge}</p>}
+                    </div>
+
+                    {/* What have you tried (optional) */}
+                    <div>
+                      <label htmlFor="popup-tried" className="sr-only">What have you already tried? (optional)</label>
+                      <textarea
+                        id="popup-tried"
+                        value={triedBefore} onChange={(e) => setTriedBefore(e.target.value)}
+                        disabled={loading}
+                        placeholder="What have you already tried? (optional — tools, services, approaches)"
+                        rows={2}
+                        maxLength={300}
+                        className="w-full rounded-xl border border-slate-200 px-4 py-3 text-slate-800 text-[15px] outline-none transition focus:ring-2 focus:ring-blue-500/40 disabled:opacity-50 resize-none"
+                      />
+                    </div>
+
+                    {serverError && (
+                      <p role="alert" className="rounded-lg bg-red-50 border border-red-200 px-3 py-2 text-sm text-red-600">{serverError}</p>
+                    )}
+
+                    <button
+                      type="submit" disabled={loading}
+                      className="w-full notch [--notch:10px] bg-blue-600 hover:bg-blue-700 text-white font-bold uppercase tracking-wide py-3 text-[15px] transition disabled:opacity-60 flex items-center justify-center gap-2"
+                    >
+                      {loading ? (
+                        <>
+                          <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
+                          </svg>
+                          Sending…
+                        </>
+                      ) : "Get my free snapshot"}
+                    </button>
+                  </form>
+
+                  <div className="mt-3 pt-3 border-t border-slate-100 text-center">
+                    <p className="text-xs text-slate-400 mb-1">Or take 5 minutes for a free self-check</p>
+                    <a
+                      href="/tech-health-check"
+                      onClick={() => close()}
+                      className="text-sm font-semibold text-blue-600 hover:underline transition"
+                    >
+                      Try the Free Tech Health Check
+                    </a>
+                  </div>
+
+                  <div className="mt-4 flex items-center justify-between">
+                    <p className="text-xs text-slate-400">No spam. Unsubscribe anytime.</p>
+                    <button
+                      onClick={() => close()}
+                      className="text-xs text-slate-400 hover:text-slate-600 underline transition"
+                    >
+                      No thanks
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
           </div>
-
-          {/* Body */}
-          <div className="px-6 py-6">
-            {success ? (
-              <DownloadSuccess name={name} onBookSession={() => close("dismissed")} />
-            ) : (
-              <>
-                {/* Mini benefit list */}
-                <ul className="space-y-2 mb-5">
-                  {[
-                    "See where you show up, and don't, in local search results",
-                    "Find out which tier (Get Found, Get Called, Own the Area) fits your business",
-                    "Real follow-up from a real person, not a bot",
-                  ].map((b, i) => (
-                    <li key={i} className="flex items-start gap-2.5 text-sm text-slate-600">
-                      <svg className="h-4 w-4 text-blue-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                      </svg>
-                      {b}
-                    </li>
-                  ))}
-                </ul>
-
-                <form onSubmit={handleSubmit} noValidate className="space-y-3">
-                  <div>
-                    <label htmlFor="popup-name" className="sr-only">Your first name</label>
-                    <input
-                      id="popup-name"
-                      ref={nameRef} type="text" autoComplete="given-name"
-                      value={name} onChange={(e) => setName(e.target.value)}
-                      disabled={loading} placeholder="Your first name"
-                      aria-invalid={errors.name ? "true" : undefined}
-                      aria-describedby={errors.name ? "popup-name-error" : undefined}
-                      className={`w-full rounded-xl border px-4 py-3 text-slate-800 text-[15px] outline-none transition focus:ring-2 focus:ring-blue-500/40 disabled:opacity-50 ${errors.name ? "border-red-400 bg-red-50" : "border-slate-200"}`}
-                    />
-                    {errors.name && <p id="popup-name-error" role="alert" className="mt-1 text-xs text-red-500">{errors.name}</p>}
-                  </div>
-                  <div>
-                    <label htmlFor="popup-email" className="sr-only">Email address</label>
-                    <input
-                      id="popup-email"
-                      ref={emailRef} type="email" autoComplete="email"
-                      value={email} onChange={(e) => setEmail(e.target.value)}
-                      disabled={loading} placeholder="Email address"
-                      aria-invalid={errors.email ? "true" : undefined}
-                      aria-describedby={errors.email ? "popup-email-error" : undefined}
-                      className={`w-full rounded-xl border px-4 py-3 text-slate-800 text-[15px] outline-none transition focus:ring-2 focus:ring-blue-500/40 disabled:opacity-50 ${errors.email ? "border-red-400 bg-red-50" : "border-slate-200"}`}
-                    />
-                    {errors.email && <p id="popup-email-error" role="alert" className="mt-1 text-xs text-red-500">{errors.email}</p>}
-                  </div>
-                  <div>
-                    <label htmlFor="popup-business-name" className="sr-only">Business name</label>
-                    <input
-                      id="popup-business-name"
-                      ref={businessNameRef} type="text" autoComplete="organization"
-                      value={businessName} onChange={(e) => setBusinessName(e.target.value)}
-                      disabled={loading} placeholder="Business name"
-                      aria-invalid={errors.business_name ? "true" : undefined}
-                      aria-describedby={errors.business_name ? "popup-business-name-error" : undefined}
-                      className={`w-full rounded-xl border px-4 py-3 text-slate-800 text-[15px] outline-none transition focus:ring-2 focus:ring-blue-500/40 disabled:opacity-50 ${errors.business_name ? "border-red-400 bg-red-50" : "border-slate-200"}`}
-                    />
-                    {errors.business_name && <p id="popup-business-name-error" role="alert" className="mt-1 text-xs text-red-500">{errors.business_name}</p>}
-                  </div>
-                  <div>
-                    <label htmlFor="popup-business-location" className="sr-only">City, state</label>
-                    <input
-                      id="popup-business-location"
-                      ref={businessLocationRef} type="text" autoComplete="address-level2"
-                      value={businessLocation} onChange={(e) => setBusinessLocation(e.target.value)}
-                      disabled={loading} placeholder="City, state"
-                      aria-invalid={errors.business_location ? "true" : undefined}
-                      aria-describedby={errors.business_location ? "popup-business-location-error" : undefined}
-                      className={`w-full rounded-xl border px-4 py-3 text-slate-800 text-[15px] outline-none transition focus:ring-2 focus:ring-blue-500/40 disabled:opacity-50 ${errors.business_location ? "border-red-400 bg-red-50" : "border-slate-200"}`}
-                    />
-                    {errors.business_location && <p id="popup-business-location-error" role="alert" className="mt-1 text-xs text-red-500">{errors.business_location}</p>}
-                  </div>
-
-                  {serverError && (
-                    <p role="alert" className="rounded-lg bg-red-50 border border-red-200 px-3 py-2 text-sm text-red-600">{serverError}</p>
-                  )}
-
-                  <button
-                    type="submit" disabled={loading}
-                    className="w-full notch [--notch:10px] bg-blue-600 hover:bg-blue-700 text-white font-bold uppercase tracking-wide py-3 text-[15px] transition disabled:opacity-60 flex items-center justify-center gap-2"
-                  >
-                    {loading ? (
-                      <>
-                        <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
-                        </svg>
-                        Sending…
-                      </>
-                    ) : "Send me the free resources"}
-                  </button>
-                </form>
-
-                <div className="mt-3 pt-3 border-t border-slate-100 text-center">
-                  <p className="text-xs text-slate-400 mb-1">Or take 5 minutes for a free self-check</p>
-                  <a
-                    href="/tech-health-check"
-                    onClick={() => close()}
-                    className="text-sm font-semibold text-blue-600 hover:underline transition"
-                  >
-                    Try the Free Tech Health Check
-                  </a>
-                </div>
-
-                <div className="mt-4 flex items-center justify-between">
-                  <p className="text-xs text-slate-400">No spam. Unsubscribe anytime.</p>
-                  <button
-                    onClick={() => close()}
-                    className="text-xs text-slate-400 hover:text-slate-600 underline transition"
-                  >
-                    No thanks
-                  </button>
-                </div>
-              </>
-            )}
-          </div>
-        </div>
         </div>
       </div>
     </>

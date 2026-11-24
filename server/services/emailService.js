@@ -68,7 +68,7 @@ export const scheduleAuditEmailSequence = async ({
   );
 };
 
-export const sendAdminNotification = async ({ id, name, email, businessName, businessLocation }) => {
+export const sendAdminNotification = async ({ id, name, email, bizType, teamSize, challenge, triedBefore }) => {
   if (!process.env.RESEND_API_KEY) {
     console.warn("RESEND_API_KEY not set — skipping admin notification.");
     return;
@@ -79,6 +79,11 @@ export const sendAdminNotification = async ({ id, name, email, businessName, bus
   const researchUrl = id
     ? `${siteUrl}/admin/research-form?lead_id=${id}&sig=${signLeadLink(id)}`
     : `${siteUrl}/admin/research-form`;
+
+  const row = (label, value) =>
+    value
+      ? `<tr><td style="padding:6px 0;font-size:14px;color:#64748b;width:140px;vertical-align:top;">${escapeHtml(label)}</td><td style="padding:6px 0;font-size:14px;color:#0f172a;font-weight:600;">${escapeHtml(value)}</td></tr>`
+      : "";
 
   const html = `
 <!DOCTYPE html>
@@ -95,17 +100,20 @@ export const sendAdminNotification = async ({ id, name, email, businessName, bus
         <table width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;">
           <tr>
             <td style="background:#ffffff;border-radius:16px;border:1px solid #e2e8f0;padding:36px 40px;">
-              <h2 style="margin:0 0 16px;font-size:20px;font-weight:800;color:#0f172a;">
-                New lead: ${escapeHtml(businessName)}
+              <h2 style="margin:0 0 4px;font-size:20px;font-weight:800;color:#0f172a;">
+                New lead: ${escapeHtml(name)}
               </h2>
-              <p style="margin:0 0 20px;font-size:15px;color:#475569;">
-                <strong>${escapeHtml(name)}</strong><br/>
-                ${escapeHtml(businessLocation)}<br/>
+              <p style="margin:0 0 24px;font-size:14px;color:#64748b;">
                 <a href="mailto:${encodeURIComponent(email)}" style="color:#1d4ed8;">${escapeHtml(email)}</a>
               </p>
-              <p style="margin:0 0 20px;font-size:15px;color:#475569;">
-                Research needed. Click below to start:
-              </p>
+              <table cellpadding="0" cellspacing="0" style="width:100%;border-top:1px solid #e2e8f0;margin-bottom:24px;">
+                <tbody>
+                  ${row("Business type", bizType)}
+                  ${row("Team size", teamSize)}
+                  ${row("Biggest challenge", challenge)}
+                  ${triedBefore ? row("What they've tried", triedBefore) : ""}
+                </tbody>
+              </table>
               <a href="${researchUrl}" style="display:inline-block;background:#1d4ed8;color:#ffffff;font-weight:700;font-size:15px;padding:13px 28px;border-radius:10px;text-decoration:none;">
                 Start Research →
               </a>
@@ -120,7 +128,7 @@ export const sendAdminNotification = async ({ id, name, email, businessName, bus
 
   await sendEmail({
     to: adminEmail,
-    subject: `New lead: ${businessName} — Research needed`,
+    subject: `New lead: ${name} — ${challenge || "Research needed"}`,
     html,
   });
 };

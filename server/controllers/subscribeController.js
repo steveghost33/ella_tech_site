@@ -11,23 +11,29 @@ const normalizeField = (value, maxLength = 255) =>
 export const subscribe = async (req, res) => {
   const name = normalizeField(req.body?.name, 120);
   const email = normalizeField(req.body?.email, 254).toLowerCase();
-  const businessName = normalizeField(req.body?.business_name, 255);
-  const businessLocation = normalizeField(req.body?.business_location, 255);
-  const serviceType = normalizeField(req.body?.service_type, 100);
-  const source = normalizeField(req.body?.source, 100) || "local-seo-audit-popup";
+  const bizType = normalizeField(req.body?.biz_type, 100);
+  const teamSize = normalizeField(req.body?.team_size, 50);
+  const challenge = normalizeField(req.body?.challenge, 150);
+  const triedBefore = normalizeField(req.body?.tried_before, 300);
+  const source = normalizeField(req.body?.source, 100) || "lead-capture-popup";
 
   if (!name) return res.status(400).json({ error: "Name is required." });
   if (!email || !isValidEmail(email)) {
     return res.status(400).json({ error: "A valid email address is required." });
   }
+  if (!bizType) return res.status(400).json({ error: "Business type is required." });
+  if (!teamSize) return res.status(400).json({ error: "Team size is required." });
+  if (!challenge) return res.status(400).json({ error: "Please select your biggest challenge." });
+
+  const intakeData = { biz_type: bizType, team_size: teamSize, tried_before: triedBefore || null };
 
   try {
     const existing = await pool.query("SELECT id FROM subscribers WHERE email = $1", [email]);
 
     if (existing.rows.length > 0) {
       await pool.query(
-        "UPDATE subscribers SET name = $1, business_name = $2, business_location = $3, service_type = $4 WHERE email = $5",
-        [name, businessName, businessLocation, serviceType, email]
+        "UPDATE subscribers SET name = $1, business_name = $2, service_type = $3, intake_data = $4 WHERE email = $5",
+        [name, bizType, challenge, JSON.stringify(intakeData), email]
       );
       return res.json({
         success: true,
@@ -36,17 +42,16 @@ export const subscribe = async (req, res) => {
       });
     }
 
-    // For local SEO audit: don't send email immediately, wait for research to be completed
     // sequence_step 0 = awaiting research
     const inserted = await pool.query(
-      "INSERT INTO subscribers (name, email, business_name, business_location, service_type, source, sequence_step, research_status) VALUES ($1, $2, $3, $4, $5, $6, 0, $7) RETURNING id",
-      [name, email, businessName, businessLocation, serviceType, source, "pending"],
+      "INSERT INTO subscribers (name, email, business_name, service_type, intake_data, source, sequence_step, research_status) VALUES ($1, $2, $3, $4, $5, $6, 0, $7) RETURNING id",
+      [name, email, bizType, challenge, JSON.stringify(intakeData), source, "pending"],
     );
 
-    console.log(`New subscriber: ${name} <${email}> [${source}] - Business: ${businessName}, ${businessLocation}`);
+    console.log(`New subscriber: ${name} <${email}> [${source}] - Biz: ${bizType}, Team: ${teamSize}, Challenge: ${challenge}`);
 
-    // Send admin notification to Steven about new lead
-    sendAdminNotification({ id: inserted.rows[0].id, name, email, businessName, businessLocation }).catch((err) =>
+    // Send admin notification about new lead
+    sendAdminNotification({ id: inserted.rows[0].id, name, email, bizType, teamSize, challenge, triedBefore }).catch((err) =>
       console.error("Admin notification failed:", err.message),
     );
 
