@@ -67,7 +67,7 @@ export const faq = [
     id: "2",
     question: "What is the 2-week guarantee?",
     answer:
-      "If your site and Google Business Profile are not live within 2 weeks of you providing the content we ask for (your business info, photos, and any text you want included), you get a free month of monitoring. The clock starts once we have what we need from you, so the fastest way to launch fast is to send your content right away.",
+      "Live means your new site is published at your own web address and works on phones and computers, and your Google Business Profile is set up and submitted to Google for verification (Google decides how long verification takes). The 2 weeks starts the day I have everything on your launch checklist: your business details and hours, your services and service area, your logo and photos, any text you want used, and access to your domain and Google account. If I am waiting on your feedback, the clock pauses until you reply. If I miss the 2 weeks, your first month of monitoring is free.",
   },
   {
     id: "3",
@@ -91,7 +91,7 @@ export const faq = [
     id: "6",
     question: "How long does it take from start to launch?",
     answer:
-      "Most sites are live within 2 weeks of us receiving your content, that is the guarantee. The timeline depends on how quickly you can send your business details, photos, and any text you want on the site. The faster you provide that, the faster you are live.",
+      "For the local business plans, 2 weeks from the day I have everything on your launch checklist. See the guarantee question above for what that includes. Nonprofit projects are larger, and the timeline is set in the written proposal.",
   },
   {
     id: "7",
@@ -109,7 +109,7 @@ export const faq = [
     id: "9",
     question: "How do I get started?",
     answer:
-      "Book a free 30-minute consultation. We will look at where your business currently shows up, or does not, in local search, recommend which plan fits, and give you a clear, written flat-fee quote. No pressure to move forward.",
+      "Book a free 30-minute consultation. We will look at where your business currently shows up, or does not, in local search, recommend which plan fits, and give you a clear, written flat-fee quote.",
   },
 ];
 
@@ -124,7 +124,7 @@ export const plans = [
       "Mobile-friendly website built around local search",
       "Google Business Profile setup and optimization",
       "Local SEO foundation: location pages, listings, structured data",
-      "Live within 2 weeks of receiving your content, guaranteed",
+      "Live within 2 weeks of receiving your launch checklist (see the guarantee below)",
     ],
   },
   {
@@ -164,7 +164,7 @@ export const secondaryServices = [
     text: "We also handle the tech side once leads start coming in: automating lead routing, setting up a CRM to track every call and contact, building follow-up sequences so nothing falls through the cracks, plus Microsoft 365 setup, staff training, and workflow automation. If your site is already pulling in leads, or you just have a specific tech question, we handle that too.",
     button: {
       icon: "/images/docs.svg",
-      title: "Not Sure if You Need This Yet? Start With Your Site First",
+      title: "See Tech Setup and CRM",
       path: "/tech-solutions",
     },
   },

@@ -1,11 +1,12 @@
 import { Element } from "react-scroll";
 import CalInlineEmbed from "../components/CalInlineEmbed.jsx";
+import Placeholder from "../components/Placeholder.jsx";
 import { CONTACT_EMAIL, CONTACT_PHONE, CONTACT_PHONE_TEL } from "../data/site.js";
 
 const deliverables = [
-  "A quick look at where you currently show up, and don't, in local search",
-  "A clear recommendation on which tier (Get Found, Get Called, or Own the Area) fits your business",
-  "Next steps and a straightforward quote, no pressure",
+  "A look at your current website and tools.",
+  "My honest view of what to fix first.",
+  "Clear next steps. For local businesses, a written flat fee quote. For nonprofits, an outline of what a strategy session would cover.",
 ];
 
 const Contact = () => {
@@ -23,17 +24,14 @@ const Contact = () => {
 
         <div className="container">
           {/* Section label */}
-          <p className="caption text-center mb-4">Free Consultation</p>
+          <p className="caption text-center mb-4">Free conversation</p>
 
           {/* Main headline */}
           <h2 className="text-center h3 max-md:text-4xl max-md:leading-tight text-p4 uppercase font-black mb-4 max-w-3xl mx-auto">
-            See Which Tier Gets You Found
+            Start with a free conversation
           </h2>
           <p className="text-center text-p5 body-1 max-w-xl mx-auto mb-14 max-md:mb-10">
-            30 minutes to see where your business shows up online today and what it would take to start getting calls from local search.
-          </p>
-          <p className="text-center text-p5/70 text-sm mb-10 -mt-8 max-md:-mt-4">
-            Have a specific tech question instead? <a href="/tech-solutions" className="text-p1 font-semibold hover:underline">We handle that too</a>.
+            Tell me what isn&rsquo;t working with your website, records or tools. I&rsquo;ll tell you what I would fix first and whether I&rsquo;m the right fit.
           </p>
 
           {/* Two-column layout */}
@@ -55,10 +53,10 @@ const Contact = () => {
                 <div>
                   <p className="text-p4 font-bold text-lg leading-tight">Steven Bowman</p>
                   <p className="text-p1 text-sm font-semibold uppercase tracking-wider">
-                    Founder &amp; CTO
+                    Founder
                   </p>
                   <p className="text-p5/70 text-sm mt-1">
-                    You'll talk with me directly. 15 years of IT leadership in Michigan.
+                    You&rsquo;ll talk with me directly.
                   </p>
                 </div>
               </div>
@@ -66,10 +64,12 @@ const Contact = () => {
               {/* Who this is for */}
               <div className="mb-8">
                 <p className="text-p5 leading-relaxed text-[17px]">
-                  A working session for nonprofits, small businesses, and teams
-                  ready to improve their digital systems. We'll cover your
-                  current tools, what's slowing you down, and what to fix first.
-                  No sales pressure, just clarity.
+                  For nonprofits, community organizations and local
+                  businesses. We&rsquo;ll cover your current tools, what&rsquo;s
+                  slowing you down, and what to fix first.
+                </p>
+                <p className="text-p5/80 text-sm mt-3">
+                  <Placeholder>one call length for everyone, or a separate 20 minute link for nonprofits (the current link is 30 minutes)</Placeholder>
                 </p>
               </div>
 
@@ -81,10 +81,13 @@ const Contact = () => {
                 <ol className="space-y-3">
                   {deliverables.map((item, i) => (
                     <li key={i} className="flex items-start gap-3">
-                      <span className="mt-0.5 flex-shrink-0 w-6 h-6 rounded-full bg-p1/15 border border-p1/40 flex items-center justify-center text-p1 text-xs font-bold">
+                      <span aria-hidden="true" className="mt-0.5 flex-shrink-0 w-6 h-6 rounded-full bg-p1/15 border border-p1/40 flex items-center justify-center text-p1 text-xs font-bold">
                         {i + 1}
                       </span>
-                      <span className="text-p5 leading-relaxed">{item}</span>
+                      <span className="text-p5 leading-relaxed">
+                        <span className="sr-only">{i + 1}. </span>
+                        {item}
+                      </span>
                     </li>
                   ))}
                 </ol>
@@ -129,10 +132,6 @@ const Contact = () => {
             {/* RIGHT, Scheduler */}
             <div className="w-full lg:flex-1">
               {/* Framing line */}
-              <p className="text-p5/60 text-sm text-center mb-4 italic">
-                Consultation windows are opened weekly and intentionally limited
-                so each session gets proper preparation.
-              </p>
 
               {/* Scheduler card */}
               <div id="booking-embed" className="relative rounded-[28px] border border-s3/50 bg-s2/60 shadow-500 overflow-hidden">

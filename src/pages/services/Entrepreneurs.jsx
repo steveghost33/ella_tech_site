@@ -120,12 +120,12 @@ function Entrepreneurs() {
           </div>
 
           {/* Services */}
-          {services.map((service, idx) => (
+          {services.map((service) => (
             <div
               key={service.title}
-              className="container grid md:grid-cols-2 gap-12 mb-24 items-start"
+              className="container max-w-3xl mx-auto mb-12"
             >
-              <div className={idx % 2 !== 0 ? "order-2 md:order-1" : ""}>
+              <div>
                 <div className="rounded-2xl border border-s3/40 bg-s2/50 p-8 h-full">
                   <h2 className="h3 text-p4 mb-4">{service.title}</h2>
                   <p className="body-1 mb-6 text-p5">{service.description}</p>
@@ -137,17 +137,6 @@ function Entrepreneurs() {
                 </div>
               </div>
 
-              <div className={`flex flex-col justify-center ${idx % 2 !== 0 ? "order-1 md:order-2" : ""}`}>
-                <div className="rounded-2xl bg-s3/10 border border-s3/20 p-8">
-                  <p className="caption text-p3 mb-3 uppercase tracking-wide">Sound familiar?</p>
-                  <p className="body-1 text-p5 italic">
-                    {idx === 0 && '"I\'ve been sending people to a site I built myself three years ago. I know it\'s costing me clients but I don\'t have time to deal with it."'}
-                    {idx === 1 && '"I have leads in my inbox, leads in a spreadsheet, and leads in my head. I know I\'m losing follow-ups but there\'s no system."'}
-                    {idx === 2 && '"I spend Sunday nights doing things that should take 20 minutes but take two hours because I\'m doing them manually."'}
-                    {idx === 3 && '"I\'m paying for four tools that overlap and I have no idea which one I actually need. I just keep adding subscriptions."'}
-                  </p>
-                </div>
-              </div>
             </div>
           ))}
 
@@ -174,7 +163,7 @@ function Entrepreneurs() {
                   </li>
                   <li className="flex gap-3">
                     <span className="text-p1 font-bold flex-shrink-0">04</span>
-                    <span><strong className="text-p4">Add more when you're ready.</strong> When your business grows and you need the next layer, we're here. No pressure, no retainer required.</span>
+                    <span><strong className="text-p4">Add more when you're ready.</strong> When your business grows and you need the next layer, we're here. No retainer required.</span>
                   </li>
                 </ul>
               </div>

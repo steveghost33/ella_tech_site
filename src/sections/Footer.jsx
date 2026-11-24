@@ -11,14 +11,14 @@ const Footer = () => {
       <div className="border-t border-s3/40 bg-s2/30">
         <div className="container py-10 flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
-            <p className="text-p4 font-semibold text-lg mb-1">Ready to get found locally? Book a free consultation.</p>
-            <p className="text-p5 text-sm opacity-70">30 minutes. No pitch. Just a clear look at where you stand in local search.</p>
+            <p className="text-p4 font-semibold text-lg mb-1">Questions about your website, records or staff tools? Start with a free conversation.</p>
+            <p className="text-p5 text-sm opacity-70">Detroit based. Working with nonprofits, community organizations and local businesses.</p>
           </div>
           <a
             href="https://cal.com/ella-tech-7ze7wk"
             className="btn-ella group whitespace-nowrap"
           >
-            Get Found Locally
+            Book a free conversation
             <svg className="btn-ella-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="square" aria-hidden="true">
               <path d="M2 8h11M9 3.5 13.5 8 9 12.5" />
             </svg>
@@ -29,11 +29,11 @@ const Footer = () => {
       {/* Audience nav row */}
       <div className="border-t border-s3/20">
         <div className="container py-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-          <a href="/web-projects" className="text-p5 text-sm opacity-60 hover:opacity-100 transition-opacity whitespace-nowrap">See Our Website Work</a>
+          <a href="/web-projects" className="text-p5 text-sm opacity-60 hover:opacity-100 transition-opacity whitespace-nowrap">Work</a>
           <span className="opacity-20 text-p5 hidden sm:block">|</span>
-          <a href="/services/small-business" className="text-p5 text-sm opacity-60 hover:opacity-100 transition-opacity whitespace-nowrap">Small Business Websites</a>
+          <a href="/services/nonprofits" className="text-p5 text-sm opacity-60 hover:opacity-100 transition-opacity whitespace-nowrap">Nonprofits</a>
           <span className="opacity-20 text-p5 hidden sm:block">|</span>
-          <a href="/services/nonprofits" className="text-p5 text-sm opacity-60 hover:opacity-100 transition-opacity whitespace-nowrap">Nonprofit Websites</a>
+          <a href="/services/small-business" className="text-p5 text-sm opacity-60 hover:opacity-100 transition-opacity whitespace-nowrap">Local Businesses</a>
           <span className="opacity-20 text-p5 hidden sm:block">|</span>
           <a href="/services/grant-writing" className="text-p5 text-sm opacity-60 hover:opacity-100 transition-opacity whitespace-nowrap">Grant Writing</a>
           <span className="opacity-20 text-p5 hidden sm:block">|</span>
@@ -66,7 +66,7 @@ const Footer = () => {
 
       {/* Bottom bar */}
       <div className="border-t border-s3/20">
-        <div className="container py-6 lg:pb-6 pb-24">
+        <div className="container py-6">
           <div className="flex w-full flex-col items-center gap-6 lg:flex-row lg:gap-4">
             {/* Copyright */}
             <div className="small-compact flex flex-col items-center justify-center lg:flex-1 lg:items-start gap-1">

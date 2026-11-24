@@ -95,13 +95,11 @@ const Header = () => {
   };
 
   const navLinks = [
-    { label: "How It Works", href: "/#services" },
-    { label: "Our Website Work", href: "/web-projects" },
-    { label: "Small Business Websites", href: "/services/small-business" },
-    { label: "Nonprofit Websites", href: "/services/nonprofits" },
-    { label: "Grant Writing", href: "/services/grant-writing" },
-    { label: "Entrepreneur Websites", href: "/services/entrepreneurs" },
-    { label: "Tech Setup & CRM", href: "/tech-solutions" },
+    { label: "Nonprofits", href: "/services/nonprofits" },
+    { label: "Local Businesses", href: "/services/small-business" },
+    { label: "Work", href: "/web-projects" },
+    { label: "How It Works", href: "/services/nonprofits#how-it-works" },
+    { label: "About", href: "/#about" },
     { label: "Blog", href: "/blog" },
     { label: "Contact", href: "/#contact" },
   ];
@@ -170,8 +168,16 @@ const Header = () => {
               />
             </Link>
 
-            {/* Right: Theme toggle + Menu */}
+            {/* Right: audience links (desktop), Theme toggle + Menu */}
             <div className="flex items-center gap-2 sm:gap-3">
+              <nav aria-label="Audience" className="hidden lg:flex items-center gap-6 mr-4">
+                <Link to="/services/nonprofits" className="text-p4 font-semibold uppercase tracking-[0.06em] text-sm hover:text-p1 transition-colors">
+                  Nonprofits
+                </Link>
+                <Link to="/services/small-business" className="text-p4 font-semibold uppercase tracking-[0.06em] text-sm hover:text-p1 transition-colors">
+                  Local Businesses
+                </Link>
+              </nav>
               <ThemeToggle />
               <MenuToggle />
             </div>

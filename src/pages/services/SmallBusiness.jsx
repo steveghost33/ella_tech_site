@@ -205,7 +205,7 @@ function SmallBusiness() {
           <div className="container text-center mb-32">
             <h2 className="h4 mb-6 text-p4">Ready to get your tech working for you?</h2>
             <p className="body-1 mb-8 max-w-2xl mx-auto text-p5">
-              Book a free 30-minute consultation. We'll review your current tools, identify what's slowing you down, and give you a clear picture of what to fix first, no commitment required.
+              Book a free 30-minute consultation. We'll review your current tools, identify what's slowing you down, and give you a clear picture of what to fix first.
             </p>
             <Button href="https://cal.com/ella-tech-7ze7wk" containerClassName="inline-block mx-auto">
               Book a Free Consultation

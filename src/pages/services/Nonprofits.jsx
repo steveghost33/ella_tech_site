@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
 import Button from "../../components/Button.jsx";
 import PageSEO from "../../components/PageSEO.jsx";
 import PageShell from "../../components/PageShell.jsx";
+import Placeholder from "../../components/Placeholder.jsx";
 import { useScrollToHash } from "../../hooks/useScrollToHash.js";
-import { SITE_URL } from "../../data/site.js";
+import { NONPROFIT_BOOKING_URL, SITE_URL } from "../../data/site.js";
 
 const schema = {
   "@context": "https://schema.org",
@@ -11,92 +11,106 @@ const schema = {
   name: "Nonprofit Technology Consulting",
   serviceType: "Technology Consulting",
   description:
-    "Website builds, CRM setup, LMS development, HRIS implementation, staff training, and grant writing for nonprofit organizations. Mission-driven pricing available.",
+    "Website redesign, CRM strategy and setup, staff technology training, and AI workflow integration for Detroit area nonprofits and community organizations.",
   provider: {
     "@type": "LocalBusiness",
     name: "Ella Tech Solutions",
     url: SITE_URL,
   },
-  areaServed: ["Detroit, MI", "Michigan", "United States"],
+  areaServed: ["Detroit, MI", "Michigan"],
   url: `${SITE_URL}/services/nonprofits`,
   breadcrumb: {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
-      { "@type": "ListItem", position: 2, name: "Services", item: `${SITE_URL}/tech-solutions` },
-      { "@type": "ListItem", position: 3, name: "Nonprofits", item: `${SITE_URL}/services/nonprofits` },
+      { "@type": "ListItem", position: 2, name: "Nonprofits", item: `${SITE_URL}/services/nonprofits` },
     ],
   },
 };
 
+const painPoints = [
+  "Our website is out of date, and only one person knows how to change it.",
+  "Donors are in one system, volunteers are in a spreadsheet, and event signups are in someone's email.",
+  "We pay for software that most of our staff don't use.",
+  "Everyone is talking about AI. We don't have a plan, or a policy, for how we use it.",
+];
+
 const services = [
   {
-    title: "Website Design for Nonprofits",
+    title: "Website redesign",
     description:
-      "Donors, volunteers, and grant-makers look at your website before they look at anything else. We build clean, fast sites that tell your story clearly and make it easy for people to give, sign up, and get involved.",
+      "A new website that says clearly what you do, who you serve and how people can help. It works on phones, loads quickly, and is built so your staff can update programs, events and news without calling a developer. Donation, volunteer and contact forms send information to your records instead of sitting in someone's inbox.",
     details: [
-      "Responsive design built for donors and program participants",
-      "Donation flow and volunteer signup integration",
-      "Clear program descriptions and impact storytelling",
-      "Mission-driven pricing available for 501(c)(3) organizations",
+      "A review of your current site and what visitors need to find",
+      <>A new page structure and help with the writing <Placeholder>confirm whether you write the copy, edit theirs, or both</Placeholder></>,
+      "Donation, volunteer signup and contact forms",
+      "Training for the staff who will keep the site updated",
     ],
   },
   {
-    title: "CRM Setup & Training",
+    title: "CRM strategy and setup",
     description:
-      "Most nonprofits have bought a CRM, and stopped using it within six months. We configure your CRM around how your organization actually operates, migrate your donor and contact data, and train your staff so adoption sticks.",
+      "One place for donors, volunteers, members and partners. I help you decide what you need a CRM to do, choose a system that fits your budget or set up the one you already have, move your records out of spreadsheets, and organize it around how your team actually works.",
     details: [
-      "CRM selection based on your budget, team size, and program needs",
-      "Data migration from spreadsheets or a previous system",
-      "Workflow configuration for donor management, case tracking, and reporting",
-      "Staff training and administrator documentation included",
+      "A review of where your records live today",
+      "A recommendation on which system to use, including the one you already have",
+      "Cleanup and import of your existing records",
+      "Setup for gifts, volunteer hours, events and the reports your board asks for",
+      "Written instructions for your team",
     ],
   },
   {
-    title: "LMS & Staff Training Development",
+    title: "Staff technology training",
     description:
-      "If your onboarding lives in a folder no one can find and your compliance training is a printout, we can help. We build and implement learning platforms and create short, focused training content your staff can actually finish.",
+      "Training built around your staff's real tasks, not a tour of every button. Short sessions, practice with real work, and simple guides people can come back to. This is the part of the work I know best: I spent 15 years in education and learning design before starting Ella Tech.",
     details: [
-      "LMS platform selection and full setup",
-      "Micro-learning course development in Articulate 360 or Rise",
-      "SCORM-compliant packaging for compliance and grant reporting",
-      "Administrator training so the system runs without outside help",
+      "Sessions grouped by role, so people learn what they will use",
+      "Step by step guides and short recordings",
+      <Placeholder key="format">in person in Detroit, online, or both</Placeholder>,
+      <Placeholder key="followup">whether a follow up session is included</Placeholder>,
     ],
   },
   {
-    title: "HRIS & Microsoft 365 Implementation",
+    title: "AI workflow integration",
     description:
-      "Nonprofit HR teams are often running on spreadsheets, shared inboxes, and tribal knowledge. We implement HRIS platforms and set up Microsoft 365 properly so your team operates like the professional organization you are.",
+      "A practical plan for AI that your staff and board can understand. We look at where staff spend time on repeat tasks, such as drafting thank you letters, summarizing meeting notes or pulling reports. We decide together where AI tools can help and where they should not be used. Then I set up the workflows, draft a simple AI use policy with you, and train staff to use the tools carefully.",
     details: [
-      "HRIS selection, configuration, and staff record migration",
-      "Microsoft 365 setup including Teams, SharePoint, and business email",
-      "Onboarding workflows and permissions configured end to end",
-      "Staff training in plain language, no IT background required",
+      "A review of repeat tasks across your staff",
+      "A plain language AI use policy draft for your board",
+      "Setup using tools you already pay for, where possible",
+      "Guidance on keeping donor, family and student information private",
     ],
   },
+];
+
+const nonprofitSteps = [
   {
-    title: "AI Workflow Automation",
-    description:
-      "Nonprofit staff wear too many hats to spend hours on repetitive admin work. We identify where AI can save real time, grant reporting, donor follow-ups, scheduling, data entry, and implement automations your team will actually trust.",
-    details: [
-      "Workflow audit to identify the highest-impact automation opportunities",
-      "Implementation using tools your organization already has",
-      "AI literacy training so staff understands and can confidently use the tools",
-      "No hype, no tools your team won't touch six months from now",
-    ],
+    title: "Free conversation",
+    text: "A 20 minute call. You tell me what isn't working, and I tell you honestly whether I can help.",
   },
   {
-    title: "Grant Writing & Grant Readiness",
-    description:
-      "Funding doesn't stop at the proposal. We research opportunities, write and edit proposals, and get your organization grant-ready, then build the reporting systems that keep you in compliance once the award lands.",
-    details: [
-      "Grant research matched to your mission and program size",
-      "Grant readiness review: case for support, outcomes, financials, board documentation",
-      "Full proposal writing, editing, and letters of inquiry",
-      "Outcome tracking and reporting systems for after the award",
-    ],
-    link: "/services/grant-writing",
-    linkLabel: "See grant writing services",
+    title: "Paid strategy session",
+    text: (
+      <>
+        A working session where we go through your website, tools and records in detail and agree on priorities. The strategy session is paid: <Placeholder>price, length, and whether the fee is credited toward the project</Placeholder>
+      </>
+    ),
+  },
+  {
+    title: "Written proposal",
+    text: (
+      <>
+        You get a written proposal with the scope, timeline and price, in a form you can share with your board. <Placeholder>how many business days after the strategy session</Placeholder>
+      </>
+    ),
+  },
+  {
+    title: "Build and training",
+    text: (
+      <>
+        I do the work, keep you updated along the way, and train your staff before handoff so the work keeps going after I&rsquo;m done. <Placeholder>how often you send updates, for example weekly</Placeholder>
+      </>
+    ),
   },
 ];
 
@@ -106,123 +120,134 @@ function Nonprofits() {
   return (
     <>
       <PageSEO
-        title="Nonprofit Tech Consulting & Grant Writing | Ella Tech Solutions"
-        description="Website builds, CRM setup, LMS development, staff training, and grant writing for nonprofits. Mission-driven pricing available. Ella Tech Solutions, Detroit-based, nationwide."
+        title="Nonprofit Websites, CRM and Staff Training in Detroit | Ella Tech Solutions"
+        description="Website redesign, CRM setup, staff technology training and practical AI help for Detroit area nonprofits and community organizations. Start with a free 20 minute conversation."
         canonical={`${SITE_URL}/services/nonprofits`}
         schema={schema}
       />
 
-      <PageShell mainClassName="overflow-hidden pt-[148px] sm:pt-[200px] min-h-screen bg-s1">
-        <section className="relative pt-16 pb-24 max-lg:pt-12 max-lg:pb-20 max-md:pt-10 max-md:pb-16 bg-s1 font-poppins text-p5">
+      <PageShell mainClassName="overflow-hidden pt-[128px] sm:pt-[188px] min-h-screen bg-s1">
+        <section className="relative pt-8 pb-24 max-md:pb-16 bg-s1 font-poppins text-p5">
 
-          {/* Hero Banner */}
-          <div
-            className="relative w-full overflow-hidden rounded-3xl mb-20 min-h-[440px] sm:min-h-[380px] md:h-[350px] md:min-h-0"
-            style={{
-              backgroundImage: "url('/images/ai-workshop-1.jpg')",
-              backgroundSize: "cover",
-              backgroundPosition: "center top",
-            }}
-          >
-            <div className="absolute inset-0 bg-black/65" />
-            <div className="relative z-10 container flex flex-col justify-center items-center text-center px-4 py-12 md:h-full md:py-0">
-              <p className="text-p1 text-sm font-semibold uppercase tracking-[0.18em] mb-4">Nonprofit Technology</p>
-              <h1 className="h1 text-white drop-shadow-xl mb-4">
-                Technology built around your nonprofit's real needs.
-              </h1>
-              <p className="body-1 text-white/90 drop-shadow-lg max-w-2xl">
-                We've spent 15 years implementing technology inside nonprofits. We know the budget constraints, the board requirements, and why most tools go unused.
-              </p>
-            </div>
-          </div>
-
-          {/* Intro */}
-          <div className="container mb-20 max-w-3xl mx-auto text-center">
-            <h2 className="h3 text-p4 mb-4">The problem isn't the tools. It's that nobody set them up right.</h2>
-            <p className="body-1 text-p5">
-              Nonprofits don't have a technology shortage, they have an implementation problem. Staff are busy, budgets are tight, and most vendors sell software without providing the training or configuration it takes to get it used. We do both. Every engagement includes full setup and hands-on training, so the tools we implement actually become part of how your organization works.
-            </p>
-          </div>
-
-          {/* Services */}
-          {services.map((service, idx) => (
+          {/* Hero */}
+          <div className="container mb-16 max-md:mb-12">
             <div
-              key={service.title}
-              className="container grid md:grid-cols-2 gap-12 mb-24 items-start"
+              className="relative w-full overflow-hidden rounded-3xl"
+              style={{
+                backgroundImage: "url('/images/ai-workshop-1.jpg')",
+                backgroundSize: "cover",
+                backgroundPosition: "center top",
+              }}
             >
-              <div className={idx % 2 !== 0 ? "order-2 md:order-1" : ""}>
-                <div className="rounded-2xl border border-s3/40 bg-s2/50 p-8 h-full">
-                  <h2 className="h3 text-p4 mb-4">{service.title}</h2>
-                  <p className="body-1 mb-6 text-p5">{service.description}</p>
-                  <ul className="list-disc pl-5 space-y-2 body-3 text-p5">
-                    {service.details.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                  {service.link && (
-                    <Link
-                      to={service.link}
-                      className="inline-flex items-center gap-2 mt-6 text-p1 font-semibold text-sm uppercase tracking-wide hover:underline"
-                    >
-                      {service.linkLabel} &rarr;
-                    </Link>
-                  )}
-                </div>
-              </div>
-
-              <div className={`flex flex-col justify-center ${idx % 2 !== 0 ? "order-1 md:order-2" : ""}`}>
-                <div className="rounded-2xl bg-s3/10 border border-s3/20 p-8">
-                  <p className="caption text-p3 mb-3 uppercase tracking-wide">What we've seen</p>
-                  <p className="body-1 text-p5 italic">
-                    {idx === 0 && '"Our website looked like it was built in 2009. Donors would go to our site and we\'d lose them before they ever saw our programs."'}
-                    {idx === 1 && '"We paid for Salesforce for two years and used maybe 10% of it. Staff were still keeping donor notes in a shared spreadsheet."'}
-                    {idx === 2 && '"Our onboarding was a 60-page PDF. New hires couldn\'t find anything and we were training the same things over and over."'}
-                    {idx === 3 && '"Our HR director was managing staff records in Google Sheets. We had no idea what we were paying for in Microsoft 365."'}
-                    {idx === 4 && '"Our executive director was spending three hours every Friday pulling the same donor report by hand."'}
-                    {idx === 5 && '"We won the grant and then realized nobody had a way to track the outcomes it required us to report on."'}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
-
-          {/* Mission-Driven Pricing */}
-          <div className="container mb-24">
-            <div className="bg-s2 rounded-3xl p-10 md:p-14 border border-white/10">
-              <div className="max-w-2xl">
-                <h2 className="h3 text-p4 mb-4">Mission-Driven Pricing</h2>
-                <p className="body-1 text-p5 mb-6">
-                  Ella Tech Solutions offers discounted pricing for verified 501(c)(3) nonprofits and community-based organizations with demonstrated community impact. Quality technology consulting should not be out of reach for organizations doing important work.
+              <div className="absolute inset-0 bg-black/70" />
+              <div className="relative z-10 flex flex-col items-center text-center px-6 py-14 md:py-20 max-md:px-4 max-md:py-10">
+                <p className="text-p1 text-sm font-semibold uppercase tracking-[0.15em] mb-4 max-md:text-xs">
+                  For Detroit nonprofits and community organizations
                 </p>
-                <ul className="space-y-3 body-1 text-p5 mb-8">
-                  <li className="flex gap-3">
-                    <span className="text-p1 font-bold flex-shrink-0">—</span>
-                    <span>Available to all verified 501(c)(3) organizations</span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="text-p1 font-bold flex-shrink-0">—</span>
-                    <span>Scoped per project, no hidden fees or hourly overruns</span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="text-p1 font-bold flex-shrink-0">—</span>
-                    <span>Training and documentation included in every engagement</span>
-                  </li>
-                </ul>
-                <Button href="https://cal.com/ella-tech-7ze7wk" containerClassName="inline-block">
-                  Book a Free Consultation
+                <h1 className="h1 text-white drop-shadow-xl mb-5 max-w-4xl max-lg:text-5xl max-lg:leading-tight max-md:text-3xl">
+                  Your website, donor records and staff tools, working together
+                </h1>
+                <p className="body-1 text-white/90 drop-shadow-lg max-w-2xl mb-8 max-md:text-base">
+                  I help Detroit area nonprofits rebuild their websites, get donor and volunteer records into one place, train staff on the tools they already pay for, and make a practical plan for AI.
+                </p>
+                <Button href={NONPROFIT_BOOKING_URL} containerClassName="inline-block">
+                  Book a free 20 minute conversation
                 </Button>
               </div>
             </div>
           </div>
 
-          {/* CTA */}
-          <div className="container text-center mb-32">
-            <h2 className="h4 mb-6 text-p4">Ready to build systems your team will actually use?</h2>
-            <p className="body-1 mb-8 max-w-2xl mx-auto text-p5">
-              Book a free 30-minute consultation. We'll review your current technology, identify the gaps, and give you a prioritized list of what to fix first, no commitment required.
+          {/* Who this is for */}
+          <div className="container mb-16 max-w-3xl mx-auto text-center">
+            <h2 className="h4 text-p4 mb-4">Who this is for</h2>
+            <p className="body-1 text-p5">
+              Organizations with annual budgets of about $500,000 to $5 million: parks conservancies, community organizations, small charter schools, and other Detroit area nonprofits with a small staff and no one whose full time job is technology.
             </p>
-            <Button href="https://cal.com/ella-tech-7ze7wk" containerClassName="inline-block mx-auto">
-              Book a Free Consultation
+          </div>
+
+          {/* Pain points */}
+          <div className="container mb-20 max-w-3xl mx-auto">
+            <h2 className="h4 text-p4 mb-6 text-center">Does this sound like your organization?</h2>
+            <ul className="space-y-3">
+              {painPoints.map((point) => (
+                <li
+                  key={point}
+                  className="rounded-2xl border border-s3/40 bg-s2/50 px-6 py-4 body-1 text-p5 max-md:px-4 max-md:text-base"
+                >
+                  {point}
+                </li>
+              ))}
+            </ul>
+            <p className="body-1 text-p5 mt-6 text-center">
+              Often the fix starts with the tools you already have.
+            </p>
+          </div>
+
+          {/* Services */}
+          <div className="container mb-20">
+            <h2 className="h3 text-p4 mb-10 text-center max-md:h4">What I do</h2>
+            <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+              {services.map((service) => (
+                <div
+                  key={service.title}
+                  className="rounded-2xl border border-s3/40 bg-s2/50 p-8 max-md:p-6"
+                >
+                  <h3 className="h5 text-p4 mb-4 max-md:text-2xl">{service.title}</h3>
+                  <p className="body-2 mb-5 text-p5">{service.description}</p>
+                  <ul className="list-disc pl-5 space-y-2 body-3 text-p5">
+                    {service.details.map((item, i) => (
+                      <li key={i}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+            <p className="body-3 text-p5 text-center mt-8 max-w-2xl mx-auto">
+              Also available: Microsoft 365 setup, learning platforms for staff onboarding, and grant readiness support. <Placeholder>confirm which of these you want to keep listing</Placeholder>
+            </p>
+          </div>
+
+          {/* How it works */}
+          <div id="how-it-works" className="container mb-20 scroll-mt-[160px]">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="h3 text-p4 mb-10 text-center max-md:h4">How it works</h2>
+              <ol className="grid md:grid-cols-2 gap-6">
+                {nonprofitSteps.map((step, i) => (
+                  <li key={step.title} className="rounded-2xl border border-s3/40 bg-s2/50 p-6">
+                    <p className="text-p4 font-bold text-lg mb-2">
+                      {i + 1}. {step.title}
+                    </p>
+                    <p className="body-3 text-p5">{step.text}</p>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
+
+          {/* Pricing */}
+          <div id="pricing" className="container mb-20 scroll-mt-[160px]">
+            <div className="bg-s2 rounded-3xl p-10 md:p-14 max-md:p-6 border border-white/10 max-w-4xl mx-auto">
+              <h2 className="h4 text-p4 mb-4">What it costs</h2>
+              <p className="body-1 text-p5 mb-4">
+                A standard nonprofit website build is $2,500 to $5,000. <Placeholder>what a standard build includes, for example number of pages, donation and volunteer forms, and staff training</Placeholder>
+              </p>
+              <p className="body-1 text-p5 mb-4">
+                Larger builds, such as sites with online payments, facility rentals or a connection to your CRM, are quoted after the strategy session. CRM setup, staff training and AI work are also quoted after the strategy session, because the right scope depends on your size and the tools you already have.
+              </p>
+              <p className="body-3 text-p5">
+                <Placeholder>whether the 501(c)(3) discount still applies, and whether the $2,500 to $5,000 range already includes it</Placeholder>
+              </p>
+            </div>
+          </div>
+
+          {/* Closing CTA */}
+          <div className="container text-center mb-16">
+            <h2 className="h4 mb-4 text-p4">Start with a free 20 minute conversation</h2>
+            <p className="body-1 mb-8 max-w-2xl mx-auto text-p5">
+              Tell me what isn&rsquo;t working. If I&rsquo;m not the right fit for what you need, I&rsquo;ll tell you that too.
+            </p>
+            <Button href={NONPROFIT_BOOKING_URL} containerClassName="inline-block mx-auto">
+              Book a free 20 minute conversation
             </Button>
           </div>
         </section>

@@ -1,6 +1,8 @@
 import Hero from "../sections/Hero.jsx";
+import NonprofitBand from "../sections/NonprofitBand.jsx";
 import Plans from "../sections/Plans.jsx";
-import CaseStudy from "../sections/CaseStudy.jsx";
+import WorkPreview from "../sections/WorkPreview.jsx";
+import About from "../sections/About.jsx";
 import Services from "../sections/Services.jsx";
 import Faq from "../sections/Faq.jsx";
 import Contact from "../sections/Contact.jsx";
@@ -28,18 +30,17 @@ function Home() {
   return (
     <>
       <PageSEO
-        title="Ella Tech Solutions | Websites &amp; Local SEO, Detroit MI"
-        description="Ella Tech Solutions builds websites and runs the SEO and AEO work that helps local service businesses get found and get called. Detroit-based."
+        title="Ella Tech Solutions | Websites, CRM and Training for Detroit Nonprofits and Local Businesses"
+        description="Detroit technology consulting. Website redesign, CRM setup, staff training and AI help for nonprofits and community organizations, plus websites and local search for local businesses."
         canonical="https://www.ellatechsolutions.com/"
         schema={faqSchema}
       />
-      <PageShell
-        mainClassName="overflow-hidden pt-[128px] sm:pt-[172px]"
-        showMobileBookingBar
-      >
+      <PageShell mainClassName="overflow-hidden pt-[128px] sm:pt-[188px]">
         <Hero />
+        <NonprofitBand />
         <Plans />
-        <CaseStudy />
+        <WorkPreview />
+        <About />
         <Services />
         <Faq />
         <Contact />

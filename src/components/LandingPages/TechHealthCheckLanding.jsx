@@ -429,7 +429,7 @@ export default function TechHealthCheckLanding() {
             </div>
 
             <p className="mt-5 text-p5/60 text-sm">
-              No pitch, no pressure. I will send you a short, plain-English review.
+              I will send you a short, plain English review.
             </p>
           </div>
         </section>

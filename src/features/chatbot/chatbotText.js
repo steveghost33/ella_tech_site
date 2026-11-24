@@ -499,7 +499,7 @@ export const serviceReply = (intent) => {
     return makeSpacing(
       `Digital strategy consulting is where we start if you're not sure what you need or where your technology is breaking down.\n\n` +
         `It includes a technology audit, a gap analysis of what's missing or not working, vendor selection guidance, and a prioritized implementation roadmap. No long-term commitment required to begin.\n\n` +
-        `Most clients come in thinking they need one specific fix and leave with a much clearer picture of their whole tech stack, and a plan that actually fits their budget and team capacity.\n\n` +
+        `The goal is a clear picture of your whole tech stack, and a plan that fits your budget and team capacity.\n\n` +
         BOOKING_ONLY_CTA
     );
   }
@@ -508,8 +508,7 @@ export const serviceReply = (intent) => {
     return makeSpacing(
       `Tech consulting at Ella Tech is less about buzzwords and more about figuring out what actually makes sense for your situation.\n\n` +
         `It usually starts with understanding your current setup, your goals, and where things are breaking down, then building a clear plan and helping you execute it.\n\n` +
-        `Most clients come in with a specific problem and leave with a clearer picture of their whole tech stack.\n\n` +
-        BOOKING_ONLY_CTA
+                BOOKING_ONLY_CTA
     );
   }
 

@@ -134,7 +134,7 @@ function GrantWriting() {
             <div className="rounded-2xl bg-s3/10 border border-s3/20 p-8">
               <p className="caption text-p3 mb-3 uppercase tracking-wide">Why we do this alongside CRM and data work</p>
               <p className="body-1 text-p5">
-                Most grant writers hand you a submitted proposal and disappear. We've spent 15 years building the CRM and reporting systems nonprofits and small businesses use to track donors, customers, programs, and outcomes, so when a grant gets awarded, we already know how to set up the tracking a funder expects. The writing gets you the grant. The systems keep you in compliance and in a strong position for the next one.
+                A submitted proposal is only half the job. I spent 15 years working in education, learning design and technology, including leading learning systems for a large school district and directing learning and development at a Detroit nonprofit. I also set up the CRM and reporting systems organizations use to track donors, programs and outcomes, so when a grant is awarded, the tracking a funder expects can be built alongside it. The writing gets you the grant. The systems keep you in compliance and in a strong position for the next one.
               </p>
             </div>
           </div>

@@ -19,8 +19,7 @@ function FaqItem({ item, index }) {
       >
         <div className="flex-1">
           <div className="small-compact mb-1.5 text-p3 max-lg:hidden">
-            {index < 10 ? "0" : ""}
-            {index}
+            {String(index + 1).padStart(2, "0")}
           </div>
           <h4 className="h4 text-p4">{item.question}</h4>
         </div>
