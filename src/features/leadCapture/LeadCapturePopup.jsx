@@ -114,7 +114,7 @@ const LeadCapturePopup = () => {
     };
     const onScroll = () => {
       const max = document.documentElement.scrollHeight - window.innerHeight;
-      if (max > 0 && window.scrollY / max > 0.6) show();
+      if (max > 0 && window.scrollY / max > 0.3) show();
     };
     const onMouseOut = (e) => {
       if (!e.relatedTarget && e.clientY <= 0) show();
