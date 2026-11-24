@@ -51,7 +51,7 @@ const Hero = () => {
             </a>
           </div>
           <p className="mt-5 text-sm text-p5">
-            Live within 2 weeks, guaranteed &middot; Plans from $1,200 &middot; Free 30-minute consultation
+            Live within 2 weeks, guaranteed &middot; Simple flat-fee pricing &middot; Free 30-minute consultation
           </p>
         </div>
       </div>

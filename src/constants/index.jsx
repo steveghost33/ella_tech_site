@@ -73,7 +73,7 @@ export const faq = [
     id: "3",
     question: "How much does this cost?",
     answer:
-      "Get Found runs $1,200 to $1,800 up front plus $150 a month, Get Called runs $2,200 to $3,500 up front plus $275 a month, and Own the Area runs $3,500 to $5,500 up front plus $450 to $500 a month. The monthly care plan scales with the tier since the amount of ongoing work scales with it. Exact pricing depends on your business and what you need built. Book a free 30-minute consultation and you will get a clear, written quote before committing to anything.",
+      "Every plan is flat-fee: one set price to build, then one flat monthly care plan. No hourly billing and no surprise add-ons. Because every business needs something a little different, we don't post a one-size-fits-all number. Book a free 30-minute call (or take the free Tech Health Check first) and you'll get a clear, written flat-fee quote before you commit to anything.",
   },
   {
     id: "4",
@@ -97,7 +97,7 @@ export const faq = [
     id: "7",
     question: "What happens after my site launches? Is there ongoing cost?",
     answer:
-      "Yes. Every tier includes a monthly care plan that covers hosting, monitoring, and keeping your Google Business Profile and SEO work current, starting at $150 a month for Get Found and scaling up to $450 to $500 a month for Own the Area. The fee scales with the tier because the amount of ongoing work does too, Own the Area includes ongoing content and competitor tracking, for example. There are no surprise add-on fees.",
+      "Yes, and it's one flat monthly fee. Every plan includes a care plan that covers hosting, monitoring, and keeping your Google Business Profile and SEO work current. The monthly fee is locked in on your written quote, scales with how much ongoing work your plan includes, and never comes with surprise add-on fees.",
   },
   {
     id: "8",
@@ -109,7 +109,7 @@ export const faq = [
     id: "9",
     question: "How do I get started?",
     answer:
-      "Book a free 30-minute consultation. We will look at where your business currently shows up, or does not, in local search, recommend which tier fits, and give you a clear, written quote. No pressure to move forward.",
+      "Book a free 30-minute consultation. We will look at where your business currently shows up, or does not, in local search, recommend which plan fits, and give you a clear, written flat-fee quote. No pressure to move forward.",
   },
 ];
 
@@ -117,8 +117,7 @@ export const plans = [
   {
     id: "get-found",
     title: "Get Found",
-    price: "$1,200–$1,800",
-    monthly: "+ $150/mo",
+    bestFor: "Best for: getting on the map",
     description:
       "Show up when someone nearby searches for what you do. A fast, mobile-friendly website and a fully optimized Google Business Profile, built so local customers can find you and call.",
     details: [
@@ -131,8 +130,7 @@ export const plans = [
   {
     id: "get-called",
     title: "Get Called",
-    price: "$2,200–$3,500",
-    monthly: "+ $275/mo",
+    bestFor: "Best for: turning searches into calls",
     description:
       "Rank locally and show up in AI answer engines. Everything in Get Found, plus the SEO and AEO work that puts you in front of customers searching on Google and asking AI tools for a recommendation.",
     details: [
@@ -145,8 +143,7 @@ export const plans = [
   {
     id: "own-the-area",
     title: "Own the Area",
-    price: "$3,500–$5,500",
-    monthly: "+ $450–$500/mo",
+    bestFor: "Best for: staying ahead of competitors",
     description:
       "Be the obvious local choice, consistently. Everything in Get Called, plus the ongoing content and optimization that keeps you ahead of competitors in your service area month after month.",
     details: [
