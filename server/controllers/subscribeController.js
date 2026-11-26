@@ -25,15 +25,13 @@ export const subscribe = async (req, res) => {
   if (!teamSize) return res.status(400).json({ error: "Team size is required." });
   if (!challenge) return res.status(400).json({ error: "Please select your biggest challenge." });
 
-  const intakeData = { biz_type: bizType, team_size: teamSize, tried_before: triedBefore || null };
-
   try {
     const existing = await pool.query("SELECT id FROM subscribers WHERE email = $1", [email]);
 
     if (existing.rows.length > 0) {
       await pool.query(
-        "UPDATE subscribers SET name = $1, business_name = $2, service_type = $3, intake_data = $4 WHERE email = $5",
-        [name, bizType, challenge, JSON.stringify(intakeData), email]
+        "UPDATE subscribers SET name = $1, business_name = $2, business_location = $3, service_type = $4 WHERE email = $5",
+        [name, bizType, teamSize, challenge.slice(0, 100), email]
       );
       return res.json({
         success: true,
@@ -44,8 +42,8 @@ export const subscribe = async (req, res) => {
 
     // sequence_step 0 = awaiting research
     const inserted = await pool.query(
-      "INSERT INTO subscribers (name, email, business_name, service_type, intake_data, source, sequence_step, research_status) VALUES ($1, $2, $3, $4, $5, $6, 0, $7) RETURNING id",
-      [name, email, bizType, challenge, JSON.stringify(intakeData), source, "pending"],
+      "INSERT INTO subscribers (name, email, business_name, business_location, service_type, source, sequence_step, research_status) VALUES ($1, $2, $3, $4, $5, $6, 0, $7) RETURNING id",
+      [name, email, bizType, teamSize, challenge.slice(0, 100), source, "pending"],
     );
 
     console.log(`New subscriber: ${name} <${email}> [${source}] - Biz: ${bizType}, Team: ${teamSize}, Challenge: ${challenge}`);
